@@ -79,76 +79,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                           | LEFT |RIGHT | |  UP  |DOWN  |
      *                                           +-------------+ +-------------+
      */
-    [_BASE] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT, KC_NO,
-        CMD_ESC, CTRL_A,  ALT_R,   GUI_S,   SHFT_T,  KC_G,                KC_M,    SHFT_N,  GUI_E,   ALT_I,   CTRL_O,  KC_SCLN,
-        SC_LSPO, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, SC_RSPC,
-                          KC_LBRC, KC_RBRC,                                                 KC_LCBR, KC_RCBR,
-                                            KC_SPC,  KC_BSPC,             TRACKPT, KC_ENT,
-                                            MS_GRV,  NUMPAD,              KC_EQL,  KC_MINS,
-                                            MS_SCL_P,MS_SCL_L,            MEDIA,   KC_DLR
-    ),
+    /**
+ * Copyright 2023 Gary Gregory Rogers <gagregrog@gmail.com> (@gagregrog)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-    [_NUMPAD] = LAYOUT(
-        RGB_VAD, RGB_VAI, RGB_RMOD,KC_UP,   RGB_MOD, RGB_TOG,             VOICE,   KC_7,    KC_8,    KC_9,    KC_PSLS, KC_PAST,
-        _______, KC_LCTL, ALT_LEFT,GUI_DOWN,SHFT_RGT,KC_NO,               KC_NO,   SHFT_4,  GUI_5,   ALT_6,   CTRL_PLS,KC_PPLS,
-        _______, UNDO,    CUT,     COPY,    NEXT,    PASTE,               KC_NO,   KC_1,    KC_2,    KC_3,    KC_BSLS, KC_PIPE,
-                          KC_NO,   KC_NO,                                                   KC_0,    KC_PDOT,
-                                            _______, _______,             TRACKPT, ROW,
-                                            _______, _______,             DUP,     KC_RALT,
-                                            _______, _______,             WINDOW,  KC_HASH
-    ),
+#include QMK_KEYBOARD_H
+// include all common keycodes / macros
+#include "gagregrog.h"
 
-    [_MOUSE] = LAYOUT(
-        _______, _______, _______, _______, _______, MS_TGGL,             _______, _______, KC_WH_D, _______, _______, _______,
-        _______, _______, KC_BTN1, KC_BTN3, KC_BTN2, _______,             _______, KC_WH_L, KC_WH_U, KC_WH_R, _______, _______,
-        _______, _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______, _______,
-                          _______, _______,                                                 _______, _______,
-                                            _______, _______,             TRACKPT, _______,
-                                            _______, _______,             _______, GAME,
-                                            _______, _______,             _______, _______
-    ),
+USE_GAGREGROG_KEYMAP
 
-    [_GAME] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_GRV,  KC_ESC,
-        KC_J,    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                KC_NO,   KC_BTN1, KC_BTN3, KC_BTN2, KC_NO,   KC_NO,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                KC_NO,   KC_RSFT, KC_RGUI, KC_RALT, KC_RCTL, KC_NO,
-                          KC_ESC,  KC_ESC,                                                  KC_NO,   KC_NO,
-                                            KC_SPC,  MS_TURBO,            TRACKPT, KC_ENT,
-                                            KC_COMM, KC_NO,               KC_EQL,  KC_MINS,
-                                            KC_SLSH, KC_MINS,             KC_NO,   TO_BASE
-    ),
-
-    [_MEDIA] = LAYOUT(
-        KC_NO,   KC_NO,   KC_MV_UL,KC_MV_U, KC_MV_UR,KC_WH_U,             KC_NO,   KC_VOLD, KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_MV_L, KC_MV_C, KC_MV_R, KC_WH_D,             KC_NO,   KC_MPRV, KC_MPLY, KC_MNXT, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_MV_DL,KC_MV_D, KC_MV_DR,KC_NO,               KC_NO,   KC_NO,   KC_MSTP, KC_NO,   KC_NO,   KC_NO,
-                          KC_NO,   KC_NO,                                                   KC_NO,   KC_NO,
-                                            _______, CW_TOGG,             TRACKPT, _______,
-                                            KC_NO,   WINDOW,              KC_NO,   KC_NO,
-                                            _______, _______,             _______, MO_RST
-    ),
-
-    [_WINDOW] = LAYOUT(
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_MV_UL,KC_MV_U,  KC_MV_UR,KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_MV_L, KC_MV_C,  KC_MV_R, KC_NO,   KC_NO,
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_MV_DL,KC_MV_D,  KC_MV_DR,KC_NO,   KC_NO,
-                          KC_NO,   KC_NO,                                                   KC_NO,    KC_NO,
-                                            KC_NO,   KC_NO,               TRACKPT, KC_NO,
-                                            KC_NO,   _______,             KC_NO,   KC_NO,
-                                            KC_NO,   BASE,                _______, KC_NO
-    ),
-
-    [_RESET] = LAYOUT(
-        QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  
-                          KC_NO,   KC_NO,                                                   KC_NO,   KC_NO,  
-                                            KC_NO,   KC_NO,               TRACKPT, KC_NO,  
-                                            KC_NO,   KC_NO,               KC_NO,   KC_NO,  
-                                            KC_NO,   KC_NO,               KC_NO,   _______
-    )
-};
+uint32_t last_light_mode;
 
 void persistent_default_layer_set(uint16_t default_layer) {
     eeconfig_update_default_layer(default_layer);
@@ -158,6 +112,7 @@ void persistent_default_layer_set(uint16_t default_layer) {
 void matrix_init_user(void) {
   rgblight_enable();
 };
+
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   uint32_t current_light_mode = rgblight_get_mode();
