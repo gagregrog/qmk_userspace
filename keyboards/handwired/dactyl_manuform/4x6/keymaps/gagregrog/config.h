@@ -20,16 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* Select hand configuration */
-// #define MASTER_LEFT
-// #define MASTER_RIGHT
+// note: the first time you flash a board you must set the side in the EEPROM
+// see 4x6/keymaps/gagregrog/README.md for more info
+#define EE_HANDS
 
 /* Use I2C or Serial, not both */
 #define USE_SERIAL
 #undef USE_I2C
-
-/* Select hand configuration */
-#define EE_HANDS
 
 #undef MATRIX_COL_PINS
 #define MATRIX_COL_PINS \

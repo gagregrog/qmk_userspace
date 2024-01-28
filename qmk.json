@@ -3,7 +3,8 @@
     "build_targets": [
         ["bastardkb/charybdis/3x5_3_h", "gagregrog"],
         ["bastardkb/dilemma/3x5_3_h", "gagregrog"],
-        ["handwired/dactyl_manuform/4x6", "gagregrog"],
+        ["handwired/dactyl_manuform/4x6/pro_micro", "gagregrog"],
+        ["handwired/dactyl_manuform/4x6/elite_c", "gagregrog"],
         ["handwired/twokey", "gagregrog"]
     ]
 }

@@ -1,16 +1,6 @@
 # MCU name
 MCU = atmega32u4
 
-# use for right half (with trackpoint)
-# Bootloader selection
-# elite-c
-BOOTLOADER = atmel-dfu
-
-# use for left half (without trackpoint)
-# Bootloader selection
-# Pro Micro
-# BOOTLOADER = caterina
-
 TRACKPOINT_ENABLE = yes
 POINTING_DEVICE_INVERT_SCROLL = yes
 

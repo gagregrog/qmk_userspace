@@ -5,6 +5,8 @@ SRC += gagregrog.c
 # Always Features
 
 CAPS_WORD_ENABLE = yes
+BOOTMAGIC_ENABLE = yes
+CONSOLE_ENABLE = yes
 
 # Utilities to add automatically when certain features are enabled
 
