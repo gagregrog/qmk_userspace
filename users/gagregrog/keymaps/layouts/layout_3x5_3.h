@@ -7,7 +7,7 @@
 #define LAYOUT_HRM_wrapper(...) LAYOUT_wrapper(HOME_ROW_MOD_CAGS_5(__VA_ARGS__))
 
 #define THUMB_TRNS          KC_TRANS,  KC_TRANS,  KC_TRANS
-#define BASE_THUMB_L        KC_1, KC_SPC,  NUM_GRV
+#define BASE_THUMB_L        KC_BTN1, KC_SPC,  NUM_GRV
 #define BASE_THUMB_R        UTIL_MN, KC_BSPC, KC_ENT
 
 /**
