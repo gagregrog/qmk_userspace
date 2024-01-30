@@ -79,9 +79,11 @@ enum gagregrog_keycodes {
 #define TG_HRM HRM_TOGGLE
 
 // layer switches
-#define NUM_GRV LT(_LAYER_NUM, KC_GRV)
-#define UTIL_MN LT(_LAYER_UTIL, KC_MINS)
-#define MO_SETS MO(_LAYER_SETTINGS)
+#define NUM_GRV  LT(_LAYER_NUM, KC_GRV)
+#define UTIL_MN  LT(_LAYER_UTIL, KC_MINS)
+#define MO_SETS  MO(_LAYER_SETTINGS)
+#define SETS_PLS LT(_LAYER_SETTINGS, KC_PLUS)
+#define SETS_EQL LT(_LAYER_SETTINGS, KC_EQL)
 
 // clang-format off
 #define ______________COLEMAK_MOD_DH_L1____________       KC_Q,      KC_W,      KC_F,      KC_P,      KC_B

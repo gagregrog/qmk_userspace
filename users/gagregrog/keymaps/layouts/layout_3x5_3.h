@@ -29,7 +29,7 @@
 #define LAYOUT_QWERTY ADD_THREE_THUMB_BASE(LAYOUT_CORE_QWERTY)
 
 #define NUMERIC_THUMB_L     KC_NO, KC_NO, _______
-#define NUMERIC_THUMB_R     KC_EQL, KC_0, KC_PDOT
+#define NUMERIC_THUMB_R     SETS_EQL, KC_0, KC_PDOT
 #define LAYOUT_NUMERIC                                                                              \
                         LAYOUT_CORE_NUMERIC,                                                        \
                 NUMERIC_THUMB_L,    NUMERIC_THUMB_R

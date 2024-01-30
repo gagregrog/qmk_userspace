@@ -62,13 +62,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _LAYER_UTIL:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-      rgblight_sethsv(HSV_TEAL);
-      break;
-    case _LAYER_SETTINGS:
-      rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_CHARTREUSE);
       break;
-    case _LAYER_AUTOMOUSE:
+    case _LAYER_SETTINGS:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_RED);
       break;

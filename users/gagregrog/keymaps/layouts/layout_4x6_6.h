@@ -70,7 +70,7 @@
     ),                                                                                                                   \
     KC_TRNS,KC_TRNS,                                            KC_0, KC_PDOT,                                           \
                     KC_TRNS, KC_TRNS,           TRACKPT, KC_EQL,                                                         \
-                    KC_TRNS, KC_TRNS,           KC_PLUS, KC_MINS,                                                        \
+                    KC_TRNS, KC_TRNS,           SETS_PLS,KC_MINS,                                                        \
                     KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS                                                         \
 
 
@@ -82,7 +82,7 @@
     ),                                                                                                                   \
     KC_TRNS,KC_TRNS,                                            KC_TRNS,KC_TRNS,                                         \
                     KC_TRNS, KC_TRNS,           TRACKPT, KC_TRNS,                                                        \
-                    KC_TRNS, KC_TRNS,           KC_TRNS, MO_SETS,                                                        \
+                    KC_TRNS, MO_SETS,           KC_TRNS, KC_TRNS,                                                        \
                     KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS                                                         \
 
 
