@@ -38,7 +38,7 @@
     L12,     L13,     L14,     L15,     L16,     L17,               R18,     R19,     R20,     R21,     R22,     R23,    \
     L24,     L25,     L26,     L27,     L28,     L29,               R30,     R31,     R32,     R33,     R34,     R35,    \
                       KC_LBRC, KC_RBRC,                                               KC_LCBR, KC_RCBR,                  \
-                                        KC_BSPC, KC_SPC,            TRACKPT, KC_ENT,                                     \
+                                        KC_BTN1, KC_SPC,            TRACKPT, KC_ENT,                                     \
                                         KC_GRV,  NUM_GRV,           UTIL_MN, KC_MINS,                                    \
                                         MS_SCL_P,MS_SCL_L,          KC_TRNS, KC_TRNS
 
