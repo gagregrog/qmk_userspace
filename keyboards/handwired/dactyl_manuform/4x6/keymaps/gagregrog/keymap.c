@@ -1,67 +1,8 @@
 #include QMK_KEYBOARD_H
+// include all common keycodes / macros
 #include "gagregrog.h"
 
-enum layers {
-  _BASE,
-  _NUMPAD,
-  _MEDIA,
-  _WINDOW,
-  _MOUSE,
-  _GAME,
-  _RESET,
-};
-
-// layer switches
-#define NUMPAD    TT(_NUMPAD)
-#define MEDIA     TT(_MEDIA)
-#define BASE      TT(_BASE)
-#define TO_BASE   TO(_BASE)
-#define WINDOW    TT(_WINDOW)
-#define GAME      TO(_GAME)
-#define MS_GRV    LT(_MOUSE, KC_GRV)
-#define MO_RST    MO(_RESET)
-
-#define CMD_ESC   LGUI_T(KC_ESC)
-#define VOICE     LGUI(KC_F5)
-
-#define DUP       LGUI(LSFT(KC_D))
-#define ROW       LGUI(LSFT(KC_ENTER))
-
-#define COPY      LGUI(KC_C)
-#define PASTE     LGUI(KC_V)
-#define CUT       LGUI(KC_X)
-#define UNDO      LGUI(KC_Z)
-#define NEXT      LGUI(KC_D)
-#define SAVE      LGUI(KC_S)
-
-// Left-hand home row mods - _BASE layer
-#define CTRL_A    LCTL_T(KC_A)
-#define ALT_R     LALT_T(KC_R)
-#define GUI_S     LGUI_T(KC_S)
-#define SHFT_T    LSFT_T(KC_T)
-
-// Right-hand home row mods - _BASE layer
-#define SHFT_N    RSFT_T(KC_N)
-#define GUI_E     RGUI_T(KC_E)
-#define ALT_I     LALT_T(KC_I)
-#define CTRL_O    RCTL_T(KC_O)
-
-// Left-hand home row mods - _NUMPAD layer
-// #define CTRL_A    LCTL_T(KC_A)
-#define ALT_LEFT  LALT_T(KC_LEFT)
-#define GUI_DOWN  LGUI_T(KC_DOWN)
-#define SHFT_RGT  LSFT_T(KC_RIGHT)
-
-// Right-hand home row mods - _NUMPAD layer
-#define SHFT_4    RSFT_T(KC_4)
-#define GUI_5     RGUI_T(KC_5)
-#define ALT_6     LALT_T(KC_6)
-#define CTRL_PLS  RCTL_T(KC_PMNS)
-
-uint32_t last_light_mode;
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Base (colmak dh mod)
+/* Base (colmak dh mod)
      * +-----------------------------------------+                             +-----------------------------------------+
      * | TAB  |   q  |   w  |   f  |   p  |   b  |                             |   j  |   l  |   u  |   y  |   p  |  ;   |
      * |------+------+------+------+------+------|                             |------+------+------+------+------+------|
@@ -81,24 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     /**
  * Copyright 2023 Gary Gregory Rogers <gagregrog@gmail.com> (@gagregrog)
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include QMK_KEYBOARD_H
-// include all common keycodes / macros
-#include "gagregrog.h"
 
 USE_GAGREGROG_KEYMAP
 
@@ -123,30 +47,28 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   }
 
   switch (biton32(state)) {
-    case _BASE:
+    case _LAYER_COLEMAK_DH_HRM:
+    case _LAYER_COLEMAK_DH:
       rgblight_mode_noeeprom(last_light_mode);
       break;
-    case _MEDIA:
-      rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-      rgblight_sethsv(HSV_PURPLE);
-      break;
-    case _NUMPAD:
+    case _LAYER_QWERTY_HRM:
+    case _LAYER_QWERTY:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_GREEN);
       break;
-    case _WINDOW:
+    case _LAYER_NUM:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_MAGENTA);
       break;
-    case _MOUSE:
+    case _LAYER_UTIL:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_TEAL);
       break;
-    case _GAME:
+    case _LAYER_SETTINGS:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_CHARTREUSE);
       break;
-    case _RESET:
+    case _LAYER_AUTOMOUSE:
       rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
       rgblight_sethsv(HSV_RED);
       break;

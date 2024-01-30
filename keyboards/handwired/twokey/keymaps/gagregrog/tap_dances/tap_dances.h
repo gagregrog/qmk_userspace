@@ -1,10 +1,5 @@
 #include "gagregrog.h"
 
-// screenshot to clipboard
-#define SCRN_C      LCTL(SGUI(KC_4))
-#define SCRN_S      SGUI(KC_4)
-#define KC_OS_LOCK  LCTL(LGUI(KC_Q))
-
 void td_handle_L1_K1(TD_ARGS_GAGREGROG);
 void td_handle_L1_K2(TD_ARGS_GAGREGROG);
 void td_handle_L2_K2(TD_ARGS_GAGREGROG);

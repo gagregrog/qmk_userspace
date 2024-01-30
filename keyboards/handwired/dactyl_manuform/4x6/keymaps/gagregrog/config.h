@@ -57,3 +57,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // permissive hold - pressing a mod-tap key and pressing/releasing a second key before the mod-tap key is released registers the mod-tap immediately, even if before the tapping term has been reached
 #define PERMISSIVE_HOLD
+
+// disable features to try and shrink the firmware size
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define NO_ACTION_ONESHOT
+#define LAYER_STATE_8BIT

@@ -237,7 +237,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
     #endif
     // replace with better ifdef
-    #ifdef LAYOUT_split_3x5_3_h
+    #if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
       case TG_BASE:
         if (record->event.pressed) {
           if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
@@ -268,7 +268,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
         }
         return false;
-    #endif // LAYOUT_split_3x5_3_h
+    #endif // LAYOUT_split_3x5_3_h || LAYOUT_split_4x6_6
     #ifdef TRACKPOINT_ENABLE
       case MOUSE_SCROLL_PRESS:
         msScrollPress = record->event.pressed;

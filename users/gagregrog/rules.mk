@@ -7,6 +7,8 @@ SRC += gagregrog.c
 CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes
 CONSOLE_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+USE_DEFAULT_TD_ACTIONS = yes
 
 # Utilities to add automatically when certain features are enabled
 

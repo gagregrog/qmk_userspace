@@ -53,7 +53,6 @@
 #   define MOUSE_THUMB_L       THUMB_TRNS
 #   define MOUSE_THUMB_R       THUMB_TRNS
 #endif // POINTING_DEVICE_ENABLE
-
 #define LAYOUT_AUTOMOUSE                                                                            \
                         LAYOUT_CORE_TRNS,                                                           \
                 MOUSE_THUMB_L,       MOUSE_THUMB_R

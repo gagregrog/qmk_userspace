@@ -4,8 +4,10 @@
 #include "common/home_row_mods.h"
 #include "common/layers.h"
 
-#ifdef LAYOUT_split_3x5_3_h
+#if defined(LAYOUT_split_3x5_3_h)
 #    include "layouts/layout_3x5_3.h"
+#elif defined(LAYOUT_split_4x6_6)
+#    include "layouts/layout_4x6_6.h"
 #endif
 
 // clang-format off

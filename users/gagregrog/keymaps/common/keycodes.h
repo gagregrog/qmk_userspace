@@ -42,6 +42,12 @@ enum gagregrog_keycodes {
     #define AM_TG_SF KC_NO
 #endif
 
+// useful special keys
+#define CMD_ESC     LGUI_T(KC_ESC)
+#define SCRN_C      LCTL(SGUI(KC_4))
+#define SCRN_S      SGUI(KC_4)
+#define KC_OS_LOCK  LCTL(LGUI(KC_Q))
+
 // windowing shortcuts
 #define KC_MV_UL LCAG(KC_F17)
 #define KC_MV_U LCAG(KC_UP)
