@@ -6,6 +6,11 @@
   #include "oled/oled_util.h"
 #endif // OLED_ENABLE
 
+#if defined(DEBUG_RGB_MATRIX)
+    #include "led/led_util.h"
+#endif
+
+
 #if defined(MOUSE_TURBO_CLICK)
   #include "mouse_turbo_click/mouse_turbo_click.h"
 #endif // MOUSE_TURBO_CLICK

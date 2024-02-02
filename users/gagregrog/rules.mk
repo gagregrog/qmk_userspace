@@ -18,11 +18,19 @@ endif
 
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
     SRC += $(USER_PATH)/led/led_util.c
+else
+	ifeq ($(strip $(CONSOLE_ENABLE)), yes)
+		ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
+		    SRC += $(USER_PATH)/led/led_util.c
+			OPT_DEFS += -DDEBUG_RGB_MATRIX
+		endif
+	endif
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
     SRC += $(USER_PATH)/tap_dance/tap_dance_utils.c
 endif
+
 
 # Custom Features that can be added
 
