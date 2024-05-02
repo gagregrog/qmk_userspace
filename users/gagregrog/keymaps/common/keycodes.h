@@ -33,6 +33,9 @@ enum gagregrog_keycodes {
     KC_HRM_MV_R,
     KC_HRM_MV_C,
     KC_HRM_MV_L,
+    KC_HRM_MV_DL,
+    KC_HRM_MV_D,
+    KC_HRM_MV_DR,
     NEW_SAFE_RANGE,
 };
 
@@ -63,10 +66,14 @@ enum gagregrog_keycodes {
 #define KC_MAC_LOCK LGUI(LCTL(KC_Q))
 #define HR_MACL KC_HRM_MAC_LOCK
 
-// hrm movement keys
-#define HR_MV_R KC_HRM_MV_R
-#define HR_MV_C KC_HRM_MV_C
-#define HR_MV_L KC_HRM_MV_L
+// hrm windowing shortcuts
+// these are needed when a HRM key overlaps with a window shortcut
+#define HR_MV_R  KC_HRM_MV_R
+#define HR_MV_C  KC_HRM_MV_C
+#define HR_MV_L  KC_HRM_MV_L
+#define HR_MV_DL KC_HRM_MV_DL
+#define HR_MV_D  KC_HRM_MV_D
+#define HR_MV_DR KC_HRM_MV_DR
 
 #if defined(TRACKPOINT_ENABLE)
 #    define TRACKPT KC_NO
@@ -115,8 +122,8 @@ enum gagregrog_keycodes {
 #define _________________UTILITY_L3________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
 
 #define _________________UTILITY_R1________________       XXXXXXX,   KC_MV_UL,  KC_MV_U,   KC_MV_UR,  XXXXXXX
-#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   HR_MV_C,   HR_MV_R,   XXXXXXX
-#define _________________UTILITY_R3________________       XXXXXXX,   KC_MV_DL,  KC_MV_D,   KC_MV_DR,  XXXXXXX
+#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   KC_MV_C,   KC_MV_R,   XXXXXXX
+#define _________________UTILITY_R3________________       XXXXXXX,   HR_MV_DL,  HR_MV_D,   HR_MV_DR,  XXXXXXX
 
 #define _________________TRNS_X5___________________       KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS
 #define _________________NOPE_X5___________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX

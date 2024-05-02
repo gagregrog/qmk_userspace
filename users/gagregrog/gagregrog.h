@@ -20,7 +20,7 @@
 #endif // TAP_DANCE_ENABLE
 
 #if defined(POINTING_DEVICE_ENABLE)
-report_mouse_t pointing_device_task_keymap(report_mouse_t mouse_report);
+    report_mouse_t pointing_device_task_keymap(report_mouse_t mouse_report);
 #endif // POINTING_DEVICE_ENABLE
 
 #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)

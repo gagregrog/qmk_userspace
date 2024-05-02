@@ -314,6 +314,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return process_record_hrm(KC_MV_C, record);
     case LALT_T(KC_HRM_MV_R):
       return process_record_hrm(KC_MV_R, record);
+    case RSFT_T(KC_HRM_MV_DL):
+      return process_record_hrm(KC_MV_DL, record);
+    case RGUI_T(KC_HRM_MV_D):
+      return process_record_hrm(KC_MV_D, record);
+    case LALT_T(KC_HRM_MV_DR):
+      return process_record_hrm(KC_MV_DR, record);
     default:
     #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
       return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);
@@ -353,7 +359,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case RGUI_T(KC_E):
     case LSFT_T(KC_T):
     case RSFT_T(KC_N):
-        xprintf("130\n");
+        // xprintf("200\n");
         return 130;
     default:
         return TAPPING_TERM;
