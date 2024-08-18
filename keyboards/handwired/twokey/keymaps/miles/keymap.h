@@ -1,17 +1,17 @@
 #pragma once
 
 enum unicode_names {
-  UNICODE_START,
-  FIRE,
-  MIDDLE_FINGER,
-  POO,
-  PREGNANT_MAN,
-  SHOUT,
-  SKULL,
-  SNEK,
+    UNICODE_START,
+    CAT,
+    FIRE,
+    MIDDLE_FINGER,
+    PREGNANT_MAN,
+    SHOUT,
+    SKULL,
+    SUNGLASSES,
 };
 
 enum layers {
-  L1,
-  L2,
+    L1,
+    L2,
 };
