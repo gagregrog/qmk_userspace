@@ -7,6 +7,8 @@ typedef void (td_user_fn_t)(void);
 
 typedef struct {
   uint16_t key;
+  uint8_t unicode_map_index;
+  uint8_t times;
   td_user_fn_t *fn;
   uint8_t layer;
   char *string;
@@ -45,34 +47,66 @@ void TD_NOOP(void);
 
 #define KEY__TD_ACTION_GAGREGROG(KEY) { \
   .key = KEY, \
+  .unicode_map_index = 0, \
+  .times = 0, \
   .fn = TD_NOOP, \
   .layer = TD_MAX_LAYER_GAGREGROG, \
   .string = TD_NULL \
 }
-#define STRING__TD_ACTION_GAGREGROG(STR) { \
- .key = 0, \
- .fn = TD_NOOP, \
- .layer = TD_MAX_LAYER_GAGREGROG, \
- .string = STR \
+
+#ifdef UNICODEMAP_ENABLE
+#define U_TD_A_G_1(UMI) U_TD_A_G_2(UMI, 1)
+#define U_TD_A_G_2(UMI, TIMES) { \
+  .key = 0, \
+  .unicode_map_index = UMI, \
+  .times = TIMES, \
+  .fn = TD_NOOP, \
+  .layer = TD_MAX_LAYER_GAGREGROG, \
+  .string = TD_NULL \
 }
+#define U_TD_A_G_X(x,A,B,FUNC, ...) FUNC
+#define UNICODE__TD_ACTION_GAGREGROG(...) U_TD_A_G_X(,##__VA_ARGS__,\
+  U_TD_A_G_2(__VA_ARGS__),\
+  U_TD_A_G_1(__VA_ARGS__)\
+)
+#endif
+
+#define STRING__TD_ACTION_GAGREGROG(STR) { \
+  .key = 0, \
+  .unicode_map_index = 0, \
+  .times = 0, \
+  .fn = TD_NOOP, \
+  .layer = TD_MAX_LAYER_GAGREGROG, \
+  .string = STR \
+}
+
 #define LAYER__TD_ACTION_GAGREGROG(LAYER) { \
   .key = 0, \
+  .unicode_map_index = 0, \
+  .times = 0, \
   .fn = TD_NOOP, \
   .layer = LAYER, \
   .string = TD_NULL \
 }
+
 #define FN__TD_ACTION_GAGREGROG(FN) { \
   .key = 0, \
+  .unicode_map_index = 0, \
+  .times = 0, \
   .fn = FN, \
   .layer = TD_MAX_LAYER_GAGREGROG, \
   .string = TD_NULL \
 }
+
 #define NULL__TD_ACTION_GAGREGROG { \
- .key = 0, \
- .fn = TD_NOOP, \
- .layer = TD_MAX_LAYER_GAGREGROG, \
- .string = TD_NULL \
+  .key = 0, \
+  .unicode_map_index = 0, \
+  .times = 0, \
+  .fn = TD_NOOP, \
+  .layer = TD_MAX_LAYER_GAGREGROG, \
+  .string = TD_NULL \
 }
+
 #define BOOT__TD_ACTION_GAGREGROG FN__TD_ACTION_GAGREGROG(reset_keyboard)
 
 #define ACTION_TAP_DANCE_GAGREGROG( \

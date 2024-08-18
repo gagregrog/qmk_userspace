@@ -42,7 +42,6 @@ void td_handle_L1_K2(TD_ARGS_GAGREGROG) {
 static td_actions_gagregrog_t actions_L2_K2[] = {
   KEY__TD_ACTION_GAGREGROG(KC_SECRET_1),
 };
-
 void td_handle_L2_K2(TD_ARGS_GAGREGROG) {
   HANDLE_TAP_DANCE_GAGREGROG(actions_L2_K2);
 }

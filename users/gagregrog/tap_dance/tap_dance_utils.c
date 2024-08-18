@@ -63,6 +63,13 @@ void tap_dance_begin_gagregrog(
         }
         break;
     }
+  #if defined(UNICODEMAP_ENABLE)
+  } else if (action.unicode_map_index > 0) {
+    uint8_t i = 0;
+    do {
+      register_unicodemap(action.unicode_map_index);
+    } while (++i < action.times);
+  #endif
   } else if (strcmp(action.string, TD_NULL) != 0) {
       send_string(action.string);
   } else if (action.layer < TD_MAX_LAYER_GAGREGROG) {
