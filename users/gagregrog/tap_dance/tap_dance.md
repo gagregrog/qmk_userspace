@@ -1,6 +1,6 @@
 # Tap Dance
 
-When Tap Dances are enabled, these utilities will be automatically included. These utils allow you to define key taps/hold behaviors for `KC_` keycodes, `KC_SECRET_`S, user-defined functions, strings to send, and layer moves/toggles.
+When Tap Dances are enabled, these utilities will be automatically included. These utils allow you to define key taps/hold behaviors for `KC_` keycodes, unicode characters (using the unicode map), `KC_SECRET_`S, user-defined functions, strings to send, and layer moves/toggles.
 
 ## Configuration
 
@@ -14,15 +14,15 @@ enum tap_dance_keys {
 #define TD_MY_DANCE     TD(T_MY_DANCE)
 ```
 
-Next, create an array to hold your tap dance actions. Each even index (starting with index 0) will correspond to a tap action, and each odd index will correspond to a hold action. 
+Next, create an array to hold your tap dance actions. Each even index (starting with index 0) will correspond to a tap action, and each odd index will correspond to a hold action.
 
-Hold actions for regular `KC_` keycodes will remain held until released and as such will continue to register keypresses with the host system. Taps, on the other hand, will only be sent once and cannot be held. 
+Hold actions for regular `KC_` keycodes will remain held until released and as such will continue to register key presses with the host system. Taps, on the other hand, will only be sent once and cannot be held.
 
 `KC_SECRET_`s and strings will only be sent once. Functions will also only be called once. Each of these will happen when the tap dance first registers a tap/hold.
 
 Layer actions will act as a layer toggle when mapped to a tap action, and will act as a momentary layer key while held when mapped to a hold action.
 
-The array must not be sparse, but there is a helper if you want to skip items. Use the helper macros to define your functinoality.
+The array must not be sparse, but there is a helper if you want to skip items. Use the helper macros to define your functionality.
 
 For example:
 
@@ -61,6 +61,28 @@ tap_dance_action_t tap_dance_actions[] = {
   // add as many tapdance configs as you want!
 };
 ```
+
+### Unicode
+
+If you want to send unicode characters you must do the following:
+
+-   In `rules.mk` set `UNICODE_COMMON = yes` and `UNICODEMAP_ENABLE = yes`
+-   Within `config.h` (can be in keymap folder) set `#define UNICODE_SELECTED_MODES UNICODE_MODE_MACOS` or `#define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE` depending on your OS needs
+    -   Read the QMK firmware docs within `feature_unicode.md` to see how to set up each OS
+-   Within `keymap.h` create an enum to name your unicode characters, such as:
+    ```c
+    enum unicode_names {
+      SNEK
+    };
+    ```
+-   Within `keymap.c` create your character mapping, such as:
+    ```c
+    const uint32_t PROGMEM unicode_map[] = {
+      [SNEK]  = 0x1F40D, // 🐍
+    };
+    ```
+    -   You can find unicode code points on many websites, such as [here](https://emojiterra.com/snake/)
+-   Within `tap_dances.c` you can now use `UNICODE__TD_ACTION_GAGREGROG(SNEK)` and `UNICODE__TD_ACTION_GAGREGROG(SNEK, 3)` to send the snake 1 or 3 times (for example) within your `td_actions_gagregrog_t` array.
 
 ## Examples
 
@@ -149,13 +171,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // we will be setting a hold action to move to layer 2 while the key is held
   // second key will activate layer 3
   [L1] = LAYOUT_1x2(TD_L1_K1, TG(L3)),
-  
+
   // first key is transparent
   // since we will be using a momentary layer hold on key 1 in layer 1 to activate layer 2, we must define key 1 as transparent in layer 2
   // this ensures that the release of the key 1 (aka the deactivation of the layer 2) can be properly processed by layer 1
   // second key is our second tap dance
   [L2] = LAYOUT_1x2(KC_TRNS, TD_L2_K2),
-  
+
   // no functionality mapped to the first key here
   // third tap dance mapped to the second key
   [L3] = LAYOUT_1x2(KC_NO,    TD_L3_K2)
@@ -208,4 +230,97 @@ tap_dance_action_t tap_dance_actions[] = {
   [T_L2_K2] = ACTION_TAP_DANCE_GAGREGROG(handle_dance_two),
   [T_L3_K2] = ACTION_TAP_DANCE_GAGREGROG(handle_dance_three),
 };
+```
+
+### Unicode
+
+Let's create a tap dance with unicode characters.
+
+```mk
+// rules.mk
+SRC += tap_dances/tap_dances.c
+UNICODE_COMMON = yes
+UNICODEMAP_ENABLE = yes
+```
+
+```c
+// config.h
+#define UNICODE_SELECTED_MODES UNICODE_MODE_MACOS
+```
+
+```c
+// keymap.h
+#pragma once
+
+enum unicode_names {
+  POO
+};
+
+enum layers {
+  L1,
+};
+```
+
+```c
+// keymap.c
+#include QMK_KEYBOARD_H
+#include "gagregrog.h"
+#include "keymap.h"
+#include "tap_dances/tap_dances.h"
+
+const uint32_t PROGMEM unicode_map[] = {
+  [POO]   = 0x1F4A9, // 💩
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  LAYOUT_1x2(TD_L1_K1, TD_L1_K2)
+};
+```
+
+```c
+// tap_dances/tap_dances.h
+#include "gagregrog.h"
+
+void td_handle_L1_K1(TD_ARGS_GAGREGROG);
+void td_handle_L1_K2(TD_ARGS_GAGREGROG);
+
+enum tap_dance_keys {
+  T_L1_K1,
+  T_L1_K2,
+};
+
+#define TD_L1_K1 TD(T_L1_K1)
+#define TD_L1_K2 TD(T_L1_K2)
+```
+
+```c
+// tap_dances/tap_dances.c
+#include "gagregrog.h"
+#include "tap_dances.h"
+#include "keymap.h"
+
+// - All Tap Dances
+
+tap_dance_action_t tap_dance_actions[] = {
+  [T_L1_K1]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L1_K1),
+  [T_L1_K2]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L1_K2),
+};
+
+// L1_K1
+static td_actions_gagregrog_t actions_L1_K1[] = {
+  UNICODE__TD_ACTION_GAGREGROG(POO), // send poo once
+  UNICODE__TD_ACTION_GAGREGROG(POO, 5), // send poo 5 times
+};
+void td_handle_L1_K1(TD_ARGS_GAGREGROG) {
+  HANDLE_TAP_DANCE_GAGREGROG(actions_L1_K1);
+}
+
+// L1_K2
+static td_actions_gagregrog_t actions_L1_K2[] = {
+  UNICODE__TD_ACTION_GAGREGROG(POO, 4), // send poo 4 times
+  UNICODE__TD_ACTION_GAGREGROG(POO, 8), // send poo 8 times
+};
+void td_handle_L1_K2(TD_ARGS_GAGREGROG) {
+  HANDLE_TAP_DANCE_GAGREGROG(actions_L1_K2);
+}
 ```

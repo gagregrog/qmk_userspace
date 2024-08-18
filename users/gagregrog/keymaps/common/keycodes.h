@@ -40,16 +40,16 @@ enum gagregrog_keycodes {
 };
 
 #if defined(POINTING_DEVICE_ENABLE)
-    #define AM_TG_SF AM_TOGGLE
+#    define AM_TG_SF AM_TOGGLE
 #else
-    #define AM_TG_SF KC_NO
+#    define AM_TG_SF KC_NO
 #endif
 
 // useful special keys
-#define CMD_ESC     LGUI_T(KC_ESC)
-#define SCRN_C      LCTL(SGUI(KC_4))
-#define SCRN_S      SGUI(KC_4)
-#define KC_OS_LOCK  LCTL(LGUI(KC_Q))
+#define CMD_ESC LGUI_T(KC_ESC)
+#define SCRN_C LCTL(SGUI(KC_4))
+#define SCRN_S SGUI(KC_4)
+#define KC_OS_LOCK LCTL(LGUI(KC_Q))
 
 // windowing shortcuts
 #define KC_MV_UL LCAG(KC_F17)
@@ -68,11 +68,11 @@ enum gagregrog_keycodes {
 
 // hrm windowing shortcuts
 // these are needed when a HRM key overlaps with a window shortcut
-#define HR_MV_R  KC_HRM_MV_R
-#define HR_MV_C  KC_HRM_MV_C
-#define HR_MV_L  KC_HRM_MV_L
+#define HR_MV_R KC_HRM_MV_R
+#define HR_MV_C KC_HRM_MV_C
+#define HR_MV_L KC_HRM_MV_L
 #define HR_MV_DL KC_HRM_MV_DL
-#define HR_MV_D  KC_HRM_MV_D
+#define HR_MV_D KC_HRM_MV_D
 #define HR_MV_DR KC_HRM_MV_DR
 
 #if defined(TRACKPOINT_ENABLE)
@@ -86,11 +86,14 @@ enum gagregrog_keycodes {
 #define TG_HRM HRM_TOGGLE
 
 // layer switches
-#define NUM_GRV  LT(_LAYER_NUM, KC_GRV)
-#define UTIL_MN  LT(_LAYER_UTIL, KC_MINS)
-#define MO_SETS  MO(_LAYER_SETTINGS)
+#define NUM_GRV LT(_LAYER_NUM, KC_GRV)
+#define UTIL_MN LT(_LAYER_UTIL, KC_MINS)
+#define MO_SETS MO(_LAYER_SETTINGS)
 #define SETS_PLS LT(_LAYER_SETTINGS, KC_PLUS)
 #define SETS_EQL LT(_LAYER_SETTINGS, KC_EQL)
+
+#define _________________TRNS_X5___________________ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+#define _________________NOPE_X5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 // clang-format off
 #define ______________COLEMAK_MOD_DH_L1____________       KC_Q,      KC_W,      KC_F,      KC_P,      KC_B
@@ -125,8 +128,14 @@ enum gagregrog_keycodes {
 #define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   KC_MV_C,   KC_MV_R,   XXXXXXX
 #define _________________UTILITY_R3________________       XXXXXXX,   HR_MV_DL,  HR_MV_D,   HR_MV_DR,  XXXXXXX
 
-#define _________________TRNS_X5___________________       KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS
-#define _________________NOPE_X5___________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
+#define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   QK_MAKE
+#define _________________SETTINGS_L2_______________       XXXXXXX,   XXXXXXX,   XXXXXXX,   HR_MACL,   XXXXXXX
+#define _________________SETTINGS_L3_______________       _________________NOPE_X5___________________
+
+#define _________________SETTINGS_R1_______________       TG_HRM,    XXXXXXX,   XXXXXXX,   XXXXXXX,   TG_BASE
+#define _________________SETTINGS_R2_______________       KC_H,      KC_J,      KC_K,      KC_L,      XXXXXXX
+#define _________________SETTINGS_R3_______________       RGB_TOG,   RGB_MOD,   XXXXXXX,   XXXXXXX,   AM_TG_SF
+
 
 #define LAYOUT_CORE_COLEMAK_DH                                                                                \
         ______________COLEMAK_MOD_DH_L1____________,         ______________COLEMAK_MOD_DH_R1____________,     \
@@ -148,12 +157,13 @@ enum gagregrog_keycodes {
         _________________UTILITY_L2________________,          _________________UTILITY_R2________________,    \
         _________________UTILITY_L3________________,          _________________UTILITY_R3________________
 
+#define LAYOUT_CORE_SETTINGS                                                                                  \
+        _________________SETTINGS_L1_______________,          _________________SETTINGS_R1_______________,    \
+        _________________SETTINGS_L2_______________,          _________________SETTINGS_R2_______________,    \
+        _________________SETTINGS_L3_______________,          _________________SETTINGS_R3_______________
+
 #define LAYOUT_CORE_TRNS                                                                                      \
         _________________TRNS_X5___________________,          _________________TRNS_X5___________________,    \
         _________________TRNS_X5___________________,          _________________TRNS_X5___________________,    \
         _________________TRNS_X5___________________,          _________________TRNS_X5___________________
 
-#define LAYOUT_CORE_SETTINGS                                                                                  \
-        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, QK_MAKE,          TG_HRM,  XXXXXXX, XXXXXXX, XXXXXXX, TG_BASE,    \
-        _________________NOPE_X5___________________,          RGB_TOG, HR_MACL, XXXXXXX, XXXXXXX, XXXXXXX,    \
-        _________________NOPE_X5___________________,          RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, AM_TG_SF
