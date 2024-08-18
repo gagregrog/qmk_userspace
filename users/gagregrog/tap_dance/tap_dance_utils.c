@@ -51,7 +51,7 @@ void tap_dance_begin_gagregrog(
   if (action.key > 0) {
     switch (action.key) {
       #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
-        case KC_SECRET_1 ... KC_SECRET_5: 
+        case KC_SECRET_1 ... KC_SECRET_5:
           send_secret(action.key);
           break;
       #endif
@@ -69,6 +69,10 @@ void tap_dance_begin_gagregrog(
     do {
       register_unicodemap(action.unicode_map_index);
     } while (++i < action.times);
+  #endif
+  #if defined(UNICODE_COMMON)
+  } else if (strcmp(action.unicode_string, TD_NULL) != 0) {
+        send_unicode_string(action.unicode_string);
   #endif
   } else if (strcmp(action.string, TD_NULL) != 0) {
       send_string(action.string);

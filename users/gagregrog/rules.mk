@@ -95,3 +95,9 @@ endif
 ifeq ($(strip $(NO_SECRETS)), yes)
     OPT_DEFS += -DNO_SECRETS
 endif
+
+# expose this setting so we can key off of it
+ifeq ($(strip $(UNICODE_COMMON)), yes)
+    OPT_DEFS += -DUNICODE_COMMON
+endif
+
