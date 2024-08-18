@@ -7,21 +7,18 @@
 tap_dance_action_t tap_dance_actions[] = {
   [T_L1_K1]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L1_K1),
   [T_L1_K2]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L1_K2),
+  [T_L2_K1]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L2_K1),
   [T_L2_K2]  = ACTION_TAP_DANCE_GAGREGROG(td_handle_L2_K2),
 };
 
 // L1_K1
 static td_actions_gagregrog_t actions_L1_K1[] = {
-  STRING__TD_ACTION_GAGREGROG(":skull:"),
-  STRING__TD_ACTION_GAGREGROG(":fire:"),
-  STRING__TD_ACTION_GAGREGROG(":skull::skull:"),
-  STRING__TD_ACTION_GAGREGROG(":fire::fire:"),
-  STRING__TD_ACTION_GAGREGROG(":skull::skull::skull:"),
-  STRING__TD_ACTION_GAGREGROG(":fire::fire::fire:"),
-  STRING__TD_ACTION_GAGREGROG(":skull::skull::skull::skull:"),
-  STRING__TD_ACTION_GAGREGROG(":fire::fire::fire::fire:"),
-  STRING__TD_ACTION_GAGREGROG(":skull:skull:::skull::skull::skull:"),
-  STRING__TD_ACTION_GAGREGROG(":fire::fire::fire::fire::fire:"),
+  UNICODE__TD_ACTION_GAGREGROG(FIRE),
+  LAYER__TD_ACTION_GAGREGROG(L2),
+  UNICODE__TD_ACTION_GAGREGROG(FIRE, 2),
+  UNICODE__TD_ACTION_GAGREGROG(MIDDLE_FINGER),
+  UNICODE__TD_ACTION_GAGREGROG(FIRE, 10),
+  UNICODE__TD_ACTION_GAGREGROG(MIDDLE_FINGER, 10),
 };
 void td_handle_L1_K1(TD_ARGS_GAGREGROG) {
   HANDLE_TAP_DANCE_GAGREGROG(actions_L1_K1);
@@ -29,23 +26,37 @@ void td_handle_L1_K1(TD_ARGS_GAGREGROG) {
 
 // L1_K2
 static td_actions_gagregrog_t actions_L1_K2[] = {
-  STRING__TD_ACTION_GAGREGROG(":pregnant_man:"),
-  STRING__TD_ACTION_GAGREGROG(":middle_finger:"),
-  STRING__TD_ACTION_GAGREGROG(":pregnant_man::pregnant_man:"),
-  STRING__TD_ACTION_GAGREGROG(":middle_finger::middle_finger:"),
-  STRING__TD_ACTION_GAGREGROG(":pregnant_man::pregnant_man::pregnant_man:"),
-  STRING__TD_ACTION_GAGREGROG(":middle_finger::middle_finger::middle_finger:"),
-  STRING__TD_ACTION_GAGREGROG(":pregnant_man::pregnant_man::pregnant_man::pregnant_man:"),
-  STRING__TD_ACTION_GAGREGROG(":middle_finger::middle_finger::middle_finger::middle_finger:"),
-  STRING__TD_ACTION_GAGREGROG(":pregnant_man:pregnant_man:::pregnant_man::pregnant_man::pregnant_man:"),
-  STRING__TD_ACTION_GAGREGROG(":middle_finger::middle_finger::middle_finger::middle_finger::middle_finger:"),
+  UNICODE__TD_ACTION_GAGREGROG(SKULL),
+  LAYER__TD_ACTION_GAGREGROG(L2),
+  UNICODE__TD_ACTION_GAGREGROG(SKULL, 2),
+  UNICODE__TD_ACTION_GAGREGROG(PREGNANT_MAN),
+  UNICODE__TD_ACTION_GAGREGROG(SKULL, 10),
+  UNICODE__TD_ACTION_GAGREGROG(PREGNANT_MAN, 10),
 };
 void td_handle_L1_K2(TD_ARGS_GAGREGROG) {
   HANDLE_TAP_DANCE_GAGREGROG(actions_L1_K2);
 }
 
+// L2_K1
+static td_actions_gagregrog_t actions_L2_K1[] = {
+  UNICODE__TD_ACTION_GAGREGROG(SHOUT),
+  UNICODE__TD_ACTION_GAGREGROG(POO),
+  UNICODE__TD_ACTION_GAGREGROG(SHOUT, 2),
+  UNICODE__TD_ACTION_GAGREGROG(POO, 2),
+  UNICODE__TD_ACTION_GAGREGROG(SHOUT, 10),
+  UNICODE__TD_ACTION_GAGREGROG(POO, 10),
+};
+void td_handle_L2_K1(TD_ARGS_GAGREGROG) {
+  HANDLE_TAP_DANCE_GAGREGROG(actions_L2_K1);
+}
+
 // L2_K2
 static td_actions_gagregrog_t actions_L2_K2[] = {
+  UNICODE__TD_ACTION_GAGREGROG(SNEK),
+  NULL__TD_ACTION_GAGREGROG,
+  UNICODE__TD_ACTION_GAGREGROG(SNEK, 2),
+  NULL__TD_ACTION_GAGREGROG,
+  UNICODE__TD_ACTION_GAGREGROG(SNEK, 10),
   NULL__TD_ACTION_GAGREGROG,
 };
 void td_handle_L2_K2(TD_ARGS_GAGREGROG) {
