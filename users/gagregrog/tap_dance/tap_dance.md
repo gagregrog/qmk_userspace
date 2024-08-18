@@ -72,6 +72,7 @@ If you want to send unicode characters you must do the following:
 -   Within `keymap.h` create an enum to name your unicode characters, such as:
     ```c
     enum unicode_names {
+      UNICODE_START, // you must put a dummy value at the beginning of the enum or it won't work
       SNEK
     };
     ```
@@ -253,6 +254,7 @@ UNICODEMAP_ENABLE = yes
 #pragma once
 
 enum unicode_names {
+  UNICODE_START,
   POO
 };
 
