@@ -1,6 +1,10 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
+#ifdef UNICODE_COMMON
+#    include "unicode.h"
+#endif
+
 enum gagregrog_keycodes {
 #if defined(DILEMMA_SAFE_RANGE)
     BASE_TOGGLE = DILEMMA_SAFE_RANGE,

@@ -64,11 +64,28 @@ tap_dance_action_t tap_dance_actions[] = {
 
 ### Unicode
 
-If you want to send unicode characters you must do the following:
+To send unicode characters you have two options, you can use a unicode map, or unicode strings (or both).
+
+Regardless of what you chose, you must at minimum do the following:
+
+-   In `rules.mk` set `UNICODE_COMMON = yes`
+    -   In addition to configuring QMK for unicode, it will also expose a number of unicode string defines (these can be found in [../keymaps/common/unicode.h](../keymaps/common/unicode.h))
+-   Within `config.h` (you can create one in the keymap folder if it doesn't already exist) set one of the following:
+    -   `#define UNICODE_SELECTED_MODES UNICODE_MODE_MACOS`
+    -   `#define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE`
+        -   Read the [QMK firmware](https://docs.qmk.fm/features/unicode#input-modes) docs within `feature_unicode.md` (in qmk_firmware repo) to see how to set up each OS
+            -   For mac OS all you need to do is enable unicode input support in keyboard settings
+            -   For Windows you need to install [WinCompose](https://github.com/samhocevar/wincompose/releases)
+
+#### Unicode Strings
+
+With the above minimum setup, you can now use `UNICODE_STRING__TD_ACTION_GAGREGROG("my unicode string")`
+
+#### Unicode Map
+
+If you want a preset list of emojis (or other unicode characters) to send, you can do the following:
 
 -   In `rules.mk` set `UNICODE_COMMON = yes` and `UNICODEMAP_ENABLE = yes`
--   Within `config.h` (can be in keymap folder) set `#define UNICODE_SELECTED_MODES UNICODE_MODE_MACOS` or `#define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE` depending on your OS needs
-    -   Read the QMK firmware docs within `feature_unicode.md` to see how to set up each OS
 -   Within `keymap.h` create an enum to name your unicode characters, such as:
     ```c
     enum unicode_names {
@@ -319,8 +336,8 @@ void td_handle_L1_K1(TD_ARGS_GAGREGROG) {
 
 // L1_K2
 static td_actions_gagregrog_t actions_L1_K2[] = {
-  UNICODE__TD_ACTION_GAGREGROG(POO, 4), // send poo 4 times
-  UNICODE__TD_ACTION_GAGREGROG(POO, 8), // send poo 8 times
+  UNICODE_STRING__TD_ACTION_GAGREGROG(FLIP), // send the flip table emoji meme
+  UNICODE_STRING__TD_ACTION_GAGREGROG("(ﾉಥ益ಥ）ﾉ ┻━┻"), // directly send a string containing unicode characters
 };
 void td_handle_L1_K2(TD_ARGS_GAGREGROG) {
   HANDLE_TAP_DANCE_GAGREGROG(actions_L1_K2);
