@@ -2,6 +2,12 @@
 
 #pragma once
 
+#define QMK_USER_H "gagregrog.h"
+
+// this makes it so that quick rolls are treated as taps
+#define SMTD_GLOBAL_RELEASE_TERM 15
+#define MAX_DEFERRED_EXECUTORS 10
+
 #ifdef TRACKPOINT_ENABLE
 #    ifdef PS2_DRIVER_USART
 #        ifndef PS2_CLOCK_PIN

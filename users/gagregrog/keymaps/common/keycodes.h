@@ -40,6 +40,16 @@ enum gagregrog_keycodes {
     KC_HRM_MV_DL,
     KC_HRM_MV_D,
     KC_HRM_MV_DR,
+    SMTD_KEYCODES_BEGIN,
+    CKC_A,
+    CKC_R,
+    CKC_S,
+    CKC_T,
+    CKC_N,
+    CKC_E,
+    CKC_I,
+    CKC_O,
+    SMTD_KEYCODES_END,
     NEW_SAFE_RANGE,
 };
 
@@ -101,11 +111,11 @@ enum gagregrog_keycodes {
 
 // clang-format off
 #define ______________COLEMAK_MOD_DH_L1____________       KC_Q,      KC_W,      KC_F,      KC_P,      KC_B
-#define ______________COLEMAK_MOD_DH_L2____________       KC_A,      KC_R,      KC_S,      KC_T,      KC_G
+#define ______________COLEMAK_MOD_DH_L2____________       KC_A,     CKC_R,     CKC_S,     CKC_T,      KC_G
 #define ______________COLEMAK_MOD_DH_L3____________       KC_Z,      KC_X,      KC_C,      KC_D,      KC_V
 
 #define ______________COLEMAK_MOD_DH_R1____________       KC_J,      KC_L,      KC_U,      KC_Y,      KC_QUOT
-#define ______________COLEMAK_MOD_DH_R2____________       KC_M,      KC_N,      KC_E,      KC_I,      KC_O
+#define ______________COLEMAK_MOD_DH_R2____________       KC_M,      CKC_N,     CKC_E,     CKC_I,     CKC_O
 #define ______________COLEMAK_MOD_DH_R3____________       KC_K,      KC_H,      KC_COMM,   KC_DOT,    KC_SLASH
 
 #define _________________QWERTY_L1_________________       KC_Q,      KC_W,      KC_E,      KC_R,      KC_T
