@@ -40,16 +40,30 @@ enum gagregrog_keycodes {
     KC_HRM_MV_DL,
     KC_HRM_MV_D,
     KC_HRM_MV_DR,
-    SMTD_KEYCODES_BEGIN,
-    CKC_A,
-    CKC_R,
-    CKC_S,
-    CKC_T,
-    CKC_N,
-    CKC_E,
-    CKC_I,
-    CKC_O,
-    SMTD_KEYCODES_END,
+    // HRM keys must be prefixed by SM followed by their regular keycode
+    // in order to be picked up by sm_td from the regular key defined in
+    // the row layouts defined below
+    SMTD_KEYCODES_BEGIN, // required to mark the start of sm_td range
+    // Colemak DH
+    SM_KC_A,
+    SM_KC_R,
+    SM_KC_S,
+    SM_KC_T,
+    SM_KC_N,
+    SM_KC_E,
+    SM_KC_I,
+    SM_KC_O,
+    //
+    // Qwerty
+    // SM_KC_A, --dedupe from colemak
+    // SM_KC_S, -- dedupe from colemak
+    SM_KC_D,
+    SM_KC_F,
+    SM_KC_J,
+    SM_KC_K,
+    SM_KC_L,
+    SM_KC_QUOT,
+    SMTD_KEYCODES_END, // required to mark the end of sm_td range
     NEW_SAFE_RANGE,
 };
 
@@ -111,11 +125,11 @@ enum gagregrog_keycodes {
 
 // clang-format off
 #define ______________COLEMAK_MOD_DH_L1____________       KC_Q,      KC_W,      KC_F,      KC_P,      KC_B
-#define ______________COLEMAK_MOD_DH_L2____________       KC_A,     CKC_R,     CKC_S,     CKC_T,      KC_G
+#define ______________COLEMAK_MOD_DH_L2____________       KC_A,      KC_R,      KC_S,      KC_T,      KC_G
 #define ______________COLEMAK_MOD_DH_L3____________       KC_Z,      KC_X,      KC_C,      KC_D,      KC_V
 
 #define ______________COLEMAK_MOD_DH_R1____________       KC_J,      KC_L,      KC_U,      KC_Y,      KC_QUOT
-#define ______________COLEMAK_MOD_DH_R2____________       KC_M,      CKC_N,     CKC_E,     CKC_I,     CKC_O
+#define ______________COLEMAK_MOD_DH_R2____________       KC_M,      KC_N,      KC_E,      KC_I,      KC_O
 #define ______________COLEMAK_MOD_DH_R3____________       KC_K,      KC_H,      KC_COMM,   KC_DOT,    KC_SLASH
 
 #define _________________QWERTY_L1_________________       KC_Q,      KC_W,      KC_E,      KC_R,      KC_T
