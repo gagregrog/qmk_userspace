@@ -351,18 +351,6 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 };
 #endif
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LGUI_T(KC_S):
-        case RGUI_T(KC_E):
-        case LSFT_T(KC_T):
-        case RSFT_T(KC_N):
-            // xprintf("200\n");
-            return 130;
-        default:
-            return TAPPING_TERM;
-    }
-}
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     if (layer_state_is(_LAYER_COLEMAK_DH_HRM)) {
         switch (keycode) {
@@ -388,5 +376,16 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_L, KC_RIGHT_ALT)
             SM_MT(KC_QUOT, KC_RIGHT_CTRL)
         }
+    }
+    switch (keycode) {
+        // Numeric
+        SM_MT(KC_ESC, KC_LEFT_CTRL)
+        SM_MT(KC_LEFT, KC_LEFT_ALT)
+        SM_MT(KC_DOWN, KC_LEFT_GUI)
+        SM_MT(KC_RIGHT, KC_LSFT)
+        SM_MT(KC_4, KC_RSFT)
+        SM_MT(KC_5, KC_RIGHT_GUI)
+        SM_MT(KC_6, KC_RIGHT_ALT)
+        SM_MT(KC_SCLN, KC_RIGHT_CTRL)
     }
 }

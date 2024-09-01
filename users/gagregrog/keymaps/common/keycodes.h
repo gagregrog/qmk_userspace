@@ -44,7 +44,7 @@ enum gagregrog_keycodes {
     // in order to be picked up by sm_td from the regular key defined in
     // the row layouts defined below
     SMTD_KEYCODES_BEGIN, // required to mark the start of sm_td range
-    // Colemak DH
+    // -- Colemak DH
     SM_KC_A,
     SM_KC_R,
     SM_KC_S,
@@ -54,7 +54,7 @@ enum gagregrog_keycodes {
     SM_KC_I,
     SM_KC_O,
     //
-    // Qwerty
+    // -- Qwerty
     // SM_KC_A, --dedupe from colemak
     // SM_KC_S, -- dedupe from colemak
     SM_KC_D,
@@ -63,6 +63,15 @@ enum gagregrog_keycodes {
     SM_KC_K,
     SM_KC_L,
     SM_KC_QUOT,
+    // -- NUMERIC
+    SM_KC_ESC,
+    SM_KC_LEFT,
+    SM_KC_DOWN,
+    SM_KC_RIGHT,
+    SM_KC_4,
+    SM_KC_5,
+    SM_KC_6,
+    SM_KC_SCLN,
     SMTD_KEYCODES_END, // required to mark the end of sm_td range
     NEW_SAFE_RANGE,
 };
