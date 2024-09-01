@@ -355,37 +355,51 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     if (layer_state_is(_LAYER_COLEMAK_DH_HRM)) {
         switch (keycode) {
             // Colemak Mod DH
-            SM_MT(KC_A, KC_LEFT_CTRL)
-            SM_MT(KC_R, KC_LEFT_ALT)
-            SM_MT(KC_S, KC_LEFT_GUI)
-            SM_MT(KC_T, KC_LSFT)
-            SM_MT(KC_N, KC_RSFT)
-            SM_MT(KC_E, KC_RIGHT_GUI)
-            SM_MT(KC_I, KC_RIGHT_ALT)
-            SM_MT(KC_O, KC_RIGHT_CTRL)
+            SM_MT(KC_A, KC_LEFT_CTRL, 1)
+            SM_MT(KC_R, KC_LEFT_ALT, 1)
+            SM_MT(KC_S, KC_LEFT_GUI, 1)
+            SM_MT(KC_T, KC_LSFT, 1)
+            SM_MT(KC_N, KC_RSFT, 1)
+            SM_MT(KC_E, KC_RIGHT_GUI, 1)
+            SM_MT(KC_I, KC_RIGHT_ALT, 1)
+            SM_MT(KC_O, KC_RIGHT_CTRL, 1)
         }
     } else if (layer_state_is(_LAYER_QWERTY_HRM)) {
         switch (keycode) {
             // QWERTY
-            SM_MT(KC_A, KC_LEFT_CTRL)
-            SM_MT(KC_S, KC_LEFT_ALT)
-            SM_MT(KC_D, KC_LEFT_GUI)
-            SM_MT(KC_F, KC_LSFT)
-            SM_MT(KC_J, KC_RSFT)
-            SM_MT(KC_K, KC_RIGHT_GUI)
-            SM_MT(KC_L, KC_RIGHT_ALT)
-            SM_MT(KC_QUOT, KC_RIGHT_CTRL)
+            SM_MT(KC_A, KC_LEFT_CTRL, 1)
+            SM_MT(KC_S, KC_LEFT_ALT, 1)
+            SM_MT(KC_D, KC_LEFT_GUI, 1)
+            SM_MT(KC_F, KC_LSFT, 1)
+            SM_MT(KC_J, KC_RSFT, 1)
+            SM_MT(KC_K, KC_RIGHT_GUI, 1)
+            SM_MT(KC_L, KC_RIGHT_ALT, 1)
+            SM_MT(KC_QUOT, KC_RIGHT_CTRL, 1)
         }
     }
     switch (keycode) {
         // Numeric
-        SM_MT(KC_ESC, KC_LEFT_CTRL)
-        SM_MT(KC_LEFT, KC_LEFT_ALT)
-        SM_MT(KC_DOWN, KC_LEFT_GUI)
-        SM_MT(KC_RIGHT, KC_LSFT)
-        SM_MT(KC_4, KC_RSFT)
-        SM_MT(KC_5, KC_RIGHT_GUI)
-        SM_MT(KC_6, KC_RIGHT_ALT)
-        SM_MT(KC_SCLN, KC_RIGHT_CTRL)
+        SM_MT(KC_ESC, KC_LEFT_CTRL, 1)
+        SM_MT(KC_LEFT, KC_LEFT_ALT, 1)
+        SM_MT(KC_DOWN, KC_LEFT_GUI, 1)
+        SM_MT(KC_RIGHT, KC_LSFT, 1)
+        SM_MT(KC_4, KC_RSFT, 1)
+        SM_MT(KC_5, KC_RIGHT_GUI, 1)
+        SM_MT(KC_6, KC_RIGHT_ALT, 1)
+        SM_MT(KC_SCLN, KC_RIGHT_CTRL, 1)
     }
+}
+
+uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
+    switch (keycode) {
+        case SM_KC_LEFT:
+        case SM_KC_DOWN:
+        case SM_KC_RIGHT:
+            // make tap & press faster for arrow key movements
+            if (timeout == SMTD_TIMEOUT_SEQUENCE) {
+                return 300;
+            }
+    }
+
+    return get_smtd_timeout_default(timeout);
 }
