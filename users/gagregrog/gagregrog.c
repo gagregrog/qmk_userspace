@@ -364,15 +364,29 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
-    switch (keycode) {
-        // Colemak Mod DH
-        SM_MT(KC_A, KC_LEFT_CTRL)
-        SM_MT(KC_R, KC_LEFT_ALT)
-        SM_MT(KC_S, KC_LEFT_GUI)
-        SM_MT(KC_T, KC_LSFT)
-        SM_MT(KC_N, KC_RSFT)
-        SM_MT(KC_E, KC_RIGHT_GUI)
-        SM_MT(KC_I, KC_RIGHT_ALT)
-        SM_MT(KC_O, KC_RIGHT_CTRL)
+    if (layer_state_is(_LAYER_COLEMAK_DH_HRM)) {
+        switch (keycode) {
+            // Colemak Mod DH
+            SM_MT(KC_A, KC_LEFT_CTRL)
+            SM_MT(KC_R, KC_LEFT_ALT)
+            SM_MT(KC_S, KC_LEFT_GUI)
+            SM_MT(KC_T, KC_LSFT)
+            SM_MT(KC_N, KC_RSFT)
+            SM_MT(KC_E, KC_RIGHT_GUI)
+            SM_MT(KC_I, KC_RIGHT_ALT)
+            SM_MT(KC_O, KC_RIGHT_CTRL)
+        }
+    } else if (layer_state_is(_LAYER_QWERTY_HRM)) {
+        switch (keycode) {
+            // QWERTY
+            SM_MT(KC_A, KC_LEFT_CTRL)
+            SM_MT(KC_S, KC_LEFT_ALT)
+            SM_MT(KC_D, KC_LEFT_GUI)
+            SM_MT(KC_F, KC_LSFT)
+            SM_MT(KC_J, KC_RSFT)
+            SM_MT(KC_K, KC_RIGHT_GUI)
+            SM_MT(KC_L, KC_RIGHT_ALT)
+            SM_MT(KC_QUOT, KC_RIGHT_CTRL)
+        }
     }
 }
