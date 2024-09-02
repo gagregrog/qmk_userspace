@@ -33,14 +33,15 @@ enum gagregrog_keycodes {
     AM_TOGGLE,
     AM_KILL,
 #endif
-    KC_HRM_MAC_LOCK,
+    // we use dummy keycodes when we need to trigger more complicated
+    // keycodes on top of HRM keys
+    HR_MACL, // lock mac
     HR_MV_L,
     HR_MV_C,
     HR_MV_R,
-    // HRM keys must be prefixed by SM followed by their regular keycode
-    // in order to be picked up by sm_td from the regular key defined in
-    // the row layouts defined below
     SMTD_KEYCODES_BEGIN, // required to mark the start of sm_td range
+    // prefix keycodes by SM_ for interoperation between sm_td macros and hrm macros
+    SM_XXXXXXX,
     // -- Colemak DH
     SM_KC_A,
     SM_KC_R,
@@ -50,7 +51,6 @@ enum gagregrog_keycodes {
     SM_KC_E,
     SM_KC_I,
     SM_KC_O,
-    //
     // -- Qwerty
     // SM_KC_A, --dedupe from colemak
     // SM_KC_S, -- dedupe from colemak
@@ -76,8 +76,8 @@ enum gagregrog_keycodes {
     SM_HR_MV_L,
     SM_HR_MV_C,
     SM_HR_MV_R,
-    SM_XXXXXXX,
-    // --
+    // -- Settings
+    SM_HR_MACL,
     SMTD_KEYCODES_END, // required to mark the end of sm_td range
     NEW_SAFE_RANGE,
 };
@@ -106,8 +106,7 @@ enum gagregrog_keycodes {
 #define KC_MV_DR LCAG(KC_F16)
 
 // lock mac screen
-#define KC_MAC_LOCK LGUI(LCTL(KC_Q))
-#define HR_MACL KC_HRM_MAC_LOCK
+#define KC_MACL LGUI(LCTL(KC_Q))
 
 #if defined(TRACKPOINT_ENABLE)
 #    define TRACKPT KC_NO

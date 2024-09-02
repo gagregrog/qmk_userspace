@@ -364,6 +364,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SM_MT(KC_5, KC_RIGHT_GUI, 1)
         SM_MT(KC_6, KC_RIGHT_ALT, 1)
         SM_MT(KC_SCLN, KC_RIGHT_CTRL, 1)
+
         // Utility
         SM_MT(KC_MPRV, KC_LEFT_ALT, 1)
         SM_MT(KC_VOLD, KC_LEFT_GUI, 1)
@@ -371,6 +372,9 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SMTD_MT(SM_HR_MV_L, KC_MV_L, KC_RSFT)
         SMTD_MT(SM_HR_MV_C, KC_MV_C, KC_RIGHT_GUI)
         SMTD_MT(SM_HR_MV_R, KC_MV_R, KC_RIGHT_ALT)
+
+        // Settings
+        SMTD_MT(SM_HR_MACL, KC_MACL, KC_LSFT)
     }
 }
 

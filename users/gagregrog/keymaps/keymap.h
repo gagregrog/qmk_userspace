@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {   \
   [_LAYER_UTIL] = LAYOUT_HRM_wrapper(                            \
     LAYOUT_UTILITY                                               \
   ),                                                             \
-  [_LAYER_SETTINGS] = LAYOUT_wrapper(                        \
+  [_LAYER_SETTINGS] = LAYOUT_HRM_wrapper(                        \
     LAYOUT_SETTINGS                                              \
   ),                                                             \
   [_LAYER_AUTOMOUSE] = LAYOUT_wrapper(                           \
