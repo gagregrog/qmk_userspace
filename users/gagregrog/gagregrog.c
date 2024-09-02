@@ -382,6 +382,16 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 
         // Settings
         SMTD_MT(SM_HR_MACL, KC_MACL, KC_LSFT)
+
+        // dummy modifiers
+        SMTD_MT(SM_HR_LCTL, XXXXXXX, KC_LEFT_CTRL)
+        SMTD_MT(SM_HR_LALT, XXXXXXX, KC_LEFT_ALT)
+        SMTD_MT(SM_HR_LGUI, XXXXXXX, KC_LEFT_GUI)
+        SMTD_MT(SM_HR_LSFT, XXXXXXX, KC_LSFT)
+        SMTD_MT(SM_HR_RCTL, XXXXXXX, KC_RIGHT_CTRL)
+        SMTD_MT(SM_HR_RALT, XXXXXXX, KC_RIGHT_ALT)
+        SMTD_MT(SM_HR_RGUI, XXXXXXX, KC_RIGHT_GUI)
+        SMTD_MT(SM_HR_RSFT, XXXXXXX, KC_RSFT)
     }
 }
 
