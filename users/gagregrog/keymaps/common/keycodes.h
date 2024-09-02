@@ -34,12 +34,9 @@ enum gagregrog_keycodes {
     AM_KILL,
 #endif
     KC_HRM_MAC_LOCK,
-    KC_HRM_MV_R,
-    KC_HRM_MV_C,
-    KC_HRM_MV_L,
-    KC_HRM_MV_DL,
-    KC_HRM_MV_D,
-    KC_HRM_MV_DR,
+    HR_MV_L,
+    HR_MV_C,
+    HR_MV_R,
     // HRM keys must be prefixed by SM followed by their regular keycode
     // in order to be picked up by sm_td from the regular key defined in
     // the row layouts defined below
@@ -72,6 +69,15 @@ enum gagregrog_keycodes {
     SM_KC_5,
     SM_KC_6,
     SM_KC_SCLN,
+    // -- Utility
+    SM_KC_MPRV,
+    SM_KC_VOLD,
+    SM_KC_MNXT,
+    SM_HR_MV_L,
+    SM_HR_MV_C,
+    SM_HR_MV_R,
+    SM_XXXXXXX,
+    // --
     SMTD_KEYCODES_END, // required to mark the end of sm_td range
     NEW_SAFE_RANGE,
 };
@@ -102,15 +108,6 @@ enum gagregrog_keycodes {
 // lock mac screen
 #define KC_MAC_LOCK LGUI(LCTL(KC_Q))
 #define HR_MACL KC_HRM_MAC_LOCK
-
-// hrm windowing shortcuts
-// these are needed when a HRM key overlaps with a window shortcut
-#define HR_MV_R KC_HRM_MV_R
-#define HR_MV_C KC_HRM_MV_C
-#define HR_MV_L KC_HRM_MV_L
-#define HR_MV_DL KC_HRM_MV_DL
-#define HR_MV_D KC_HRM_MV_D
-#define HR_MV_DR KC_HRM_MV_DR
 
 #if defined(TRACKPOINT_ENABLE)
 #    define TRACKPT KC_NO
@@ -162,8 +159,8 @@ enum gagregrog_keycodes {
 #define _________________UTILITY_L3________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
 
 #define _________________UTILITY_R1________________       XXXXXXX,   KC_MV_UL,  KC_MV_U,   KC_MV_UR,  XXXXXXX
-#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   KC_MV_C,   KC_MV_R,   XXXXXXX
-#define _________________UTILITY_R3________________       XXXXXXX,   HR_MV_DL,  HR_MV_D,   HR_MV_DR,  XXXXXXX
+#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   HR_MV_C,   HR_MV_R,   XXXXXXX
+#define _________________UTILITY_R3________________       XXXXXXX,   KC_MV_DL,  KC_MV_D,   KC_MV_DR,  XXXXXXX
 
 #define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   QK_MAKE
 #define _________________SETTINGS_L2_______________       XXXXXXX,   XXXXXXX,   XXXXXXX,   HR_MACL,   XXXXXXX

@@ -202,16 +202,6 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
     return true; // Process all other keycodes normally
 }
 
-bool process_record_hrm(uint16_t keycode, keyrecord_t *record) {
-    // only trigger the keycode on tap, not on hold
-    if (record->event.pressed && record->tap.count) {
-        tap_code16(keycode);
-        return false;
-    }
-    // process the hold mod as normal, but don't process taps further
-    return !record->tap.count;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_smtd(keycode, record)) {
         return false;
@@ -302,22 +292,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;
 #endif // POINTING_DEVICE_AUTO_MOUSE_ENABLE
-       // for any advanced keycodes with HRM we must check for the matched key
-       // and then manually send the advanced keycode
-        case RSFT_T(KC_HRM_MAC_LOCK):
-            return process_record_hrm(KC_MAC_LOCK, record);
-        case RSFT_T(KC_HRM_MV_L):
-            return process_record_hrm(KC_MV_L, record);
-        case RGUI_T(KC_HRM_MV_C):
-            return process_record_hrm(KC_MV_C, record);
-        case LALT_T(KC_HRM_MV_R):
-            return process_record_hrm(KC_MV_R, record);
-        case RSFT_T(KC_HRM_MV_DL):
-            return process_record_hrm(KC_MV_DL, record);
-        case RGUI_T(KC_HRM_MV_D):
-            return process_record_hrm(KC_MV_D, record);
-        case LALT_T(KC_HRM_MV_DR):
-            return process_record_hrm(KC_MV_DR, record);
         default:
 #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
             return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);
@@ -352,6 +326,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 #endif
 
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+    // since we have multiple base layers that we can toggle between
+    // and the base layers share some common keys w/ different modifiers
+    // we switch on the active base layer to prevent duplicate actions
     if (layer_state_is(_LAYER_COLEMAK_DH_HRM)) {
         switch (keycode) {
             // Colemak Mod DH
@@ -387,6 +364,13 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SM_MT(KC_5, KC_RIGHT_GUI, 1)
         SM_MT(KC_6, KC_RIGHT_ALT, 1)
         SM_MT(KC_SCLN, KC_RIGHT_CTRL, 1)
+        // Utility
+        SM_MT(KC_MPRV, KC_LEFT_ALT, 1)
+        SM_MT(KC_VOLD, KC_LEFT_GUI, 1)
+        SM_MT(KC_MNXT, KC_LSFT, 1)
+        SMTD_MT(SM_HR_MV_L, KC_MV_L, KC_RSFT)
+        SMTD_MT(SM_HR_MV_C, KC_MV_C, KC_RIGHT_GUI)
+        SMTD_MT(SM_HR_MV_R, KC_MV_R, KC_RIGHT_ALT)
     }
 }
 
