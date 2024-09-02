@@ -353,6 +353,13 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_L, KC_RIGHT_ALT, 1)
             SM_MT(KC_QUOT, KC_RIGHT_CTRL, 1)
         }
+    } else {
+        // vim maps on settings layer
+        switch (keycode) {
+            SM_MT(KC_J, KC_RSFT, 1)
+            SM_MT(KC_K, KC_RIGHT_GUI, 1)
+            SM_MT(KC_L, KC_RIGHT_ALT, 1)
+        }
     }
     switch (keycode) {
         // Numeric
