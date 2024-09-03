@@ -221,7 +221,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 // replace with better ifdef
 #if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
-        case TG_BASE:
+        case BASE_TOGGLE:
             if (record->event.pressed) {
                 if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
                     layer_off(_LAYER_QWERTY_HRM);
@@ -236,7 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-        case TG_HRM:
+        case HRM_TOGGLE:
             if (record->event.pressed) {
                 if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
                     layer_on(_LAYER_QWERTY);
