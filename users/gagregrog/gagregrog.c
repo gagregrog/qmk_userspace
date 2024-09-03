@@ -411,9 +411,15 @@ uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
         case SM_KC_LEFT:
         case SM_KC_DOWN:
         case SM_KC_RIGHT:
-            // make tap & press faster for arrow key movements
+            // allow the time between successive taps to be smaller to trigger arrow key repeat
             if (timeout == SMTD_TIMEOUT_SEQUENCE) {
                 return 300;
+            }
+        case SM_KC_N:
+        case SM_KC_T:
+            // allow a little more time for shift keys to be treated as shifts
+            if (timeout == SMTD_TIMEOUT_RELEASE) {
+                return 25;
             }
     }
 
