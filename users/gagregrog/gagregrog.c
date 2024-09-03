@@ -34,7 +34,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
             dilemma_set_pointer_sniping_enabled(false);
         }
 #        elif defined(KB_CHARYBDIS)
-        // TODO: enable base charybdis functionalityf
+        // TODO: enable base charybdis functionality
         // bool is_sniping_enabled = charybdis_get_pointer_sniping_enabled();
         // if (!is_sniping_enabled && is_snipe_modifier_active) {
         //   charybdis_set_pointer_sniping_enabled(true);
@@ -329,7 +329,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     // since we have multiple base layers that we can toggle between
     // and the base layers share some common keys w/ different modifiers
     // we switch on the active base layer to prevent duplicate actions
-    if (layer_state_is(_LAYER_COLEMAK_DH_HRM)) {
+    if (IS_LAYER_ON(_LAYER_COLEMAK_DH_HRM)) {
         switch (keycode) {
             // Colemak Mod DH
             SM_MT(KC_A, KC_LEFT_CTRL, 1)
@@ -341,7 +341,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_I, KC_RIGHT_ALT, 1)
             SM_MT(KC_O, KC_RIGHT_CTRL, 1)
         }
-    } else if (layer_state_is(_LAYER_QWERTY_HRM)) {
+    } else if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
         switch (keycode) {
             // QWERTY
             SM_MT(KC_A, KC_LEFT_CTRL, 1)
@@ -353,8 +353,9 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_L, KC_RIGHT_ALT, 1)
             SM_MT(KC_QUOT, KC_RIGHT_CTRL, 1)
         }
-    } else {
-        // vim maps on settings layer
+    }
+    if (!IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
+        // vim maps on settings layer conflict with QWERTY, so only use if QWERTY not active
         switch (keycode) {
             SM_MT(KC_J, KC_RSFT, 1)
             SM_MT(KC_K, KC_RIGHT_GUI, 1)
