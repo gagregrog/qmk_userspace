@@ -202,6 +202,10 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
     return true; // Process all other keycodes normally
 }
 
+#if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
+uint8_t active_base_layer = _LAYER_COLEMAK_DH_HRM;
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_smtd(keycode, record)) {
         return false;
@@ -224,14 +228,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case BASE_TOGGLE:
             if (record->event.pressed) {
                 if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
+                    active_base_layer = _LAYER_COLEMAK_DH_HRM;
                     layer_off(_LAYER_QWERTY_HRM);
                 } else if (IS_LAYER_ON(_LAYER_QWERTY)) {
+                    active_base_layer = _LAYER_COLEMAK_DH;
                     layer_on(_LAYER_COLEMAK_DH);
                     layer_off(_LAYER_QWERTY);
                 } else if (IS_LAYER_ON(_LAYER_COLEMAK_DH)) {
+                    active_base_layer = _LAYER_QWERTY;
                     layer_on(_LAYER_QWERTY);
                     layer_off(_LAYER_COLEMAK_DH);
                 } else {
+                    active_base_layer = _LAYER_QWERTY_HRM;
                     layer_on(_LAYER_QWERTY_HRM);
                 }
             }
@@ -326,10 +334,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 #endif
 
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+#if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
     // since we have multiple base layers that we can toggle between
     // and the base layers share some common keys w/ different modifiers
     // we switch on the active base layer to prevent duplicate actions
-    if (IS_LAYER_ON(_LAYER_COLEMAK_DH_HRM)) {
+    if (active_base_layer == _LAYER_COLEMAK_DH_HRM) {
         switch (keycode) {
             // Colemak Mod DH
             SM_MT(KC_A, KC_LEFT_CTRL, 1)
@@ -341,7 +350,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_I, KC_RIGHT_ALT, 1)
             SM_MT(KC_O, KC_RIGHT_CTRL, 1)
         }
-    } else if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
+    } else if (active_base_layer == _LAYER_QWERTY_HRM) {
         switch (keycode) {
             // QWERTY
             SM_MT(KC_A, KC_LEFT_CTRL, 1)
@@ -394,6 +403,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SMTD_MT(SM_HR_RGUI, XXXXXXX, KC_RIGHT_GUI)
         SMTD_MT(SM_HR_RSFT, XXXXXXX, KC_RSFT)
     }
+#endif
 }
 
 uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
