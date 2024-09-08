@@ -10,3 +10,5 @@
 *.bin
 *.uf2
 .python-version
+
+secrets.h
