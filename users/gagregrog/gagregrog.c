@@ -1,3 +1,4 @@
+#include "keymaps/common/keycodes.h"
 #include QMK_KEYBOARD_H
 #include "gagregrog.h"
 
@@ -349,6 +350,11 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_E, KC_RIGHT_GUI, 1)
             SM_MT(KC_I, KC_RIGHT_ALT, 1)
             SM_MT(KC_O, KC_RIGHT_CTRL, 1)
+
+            // vim maps on settings layer conflict with QWERTY, so only use if QWERTY not active
+            SM_MT(KC_J, KC_RSFT, 1)
+            SM_MT(KC_K, KC_RIGHT_GUI, 1)
+            SM_MT(KC_L, KC_RIGHT_ALT, 1)
         }
     } else if (active_base_layer == _LAYER_QWERTY_HRM) {
         switch (keycode) {
@@ -363,14 +369,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
             SM_MT(KC_QUOT, KC_RIGHT_CTRL, 1)
         }
     }
-    if (!IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
-        // vim maps on settings layer conflict with QWERTY, so only use if QWERTY not active
-        switch (keycode) {
-            SM_MT(KC_J, KC_RSFT, 1)
-            SM_MT(KC_K, KC_RIGHT_GUI, 1)
-            SM_MT(KC_L, KC_RIGHT_ALT, 1)
-        }
-    }
+
     switch (keycode) {
         // Numeric
         SM_MT(KC_ESC, KC_LEFT_CTRL, 1)
@@ -411,13 +410,20 @@ uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
         case SM_KC_LEFT:
         case SM_KC_DOWN:
         case SM_KC_RIGHT:
+        case SM_KC_J:
+        case SM_KC_K:
+        case SM_KC_L:
             // allow the time between successive taps to be smaller to trigger arrow key repeat
             if (timeout == SMTD_TIMEOUT_SEQUENCE) {
                 return 300;
             }
+            // remove the delay between key repeats (global=15)
+            if (timeout == SMTD_TIMEOUT_RELEASE) {
+                return 500;
+            }
         case SM_KC_N:
         case SM_KC_T:
-            // allow a little more time for shift keys to be treated as shifts
+            // allow a little more time for shift keys to be treated as shifts (global=15)
             if (timeout == SMTD_TIMEOUT_RELEASE) {
                 return 25;
             }

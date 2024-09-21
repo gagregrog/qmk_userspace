@@ -177,8 +177,8 @@ enum gagregrog_keycodes {
 #define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   HR_MV_C,   HR_MV_R,   HR_RCTL
 #define _________________UTILITY_R3________________       XXXXXXX,   KC_MV_DL,  KC_MV_D,   KC_MV_DR,  XXXXXXX
 
-#define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   QK_MAKE
-#define _________________SETTINGS_L2_______________       HR_LCTL,   HR_LALT,   HR_LGUI,   HR_MACL,   XXXXXXX
+#define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   KC_UP,     XXXXXXX,   QK_MAKE
+#define _________________SETTINGS_L2_______________       HR_LCTL,   KC_LEFT,   KC_DOWN,   KC_RIGHT,  XXXXXXX
 #define _________________SETTINGS_L3_______________       _________________NOPE_X5___________________
 
 #define _________________SETTINGS_R1_______________       TG_HRM,    XXXXXXX,   XXXXXXX,   XXXXXXX,   TG_BASE
