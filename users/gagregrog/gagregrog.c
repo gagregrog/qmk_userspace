@@ -311,13 +311,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 #if defined(KEY_OVERRIDE_ENABLE) && defined(USE_BRACKET_OVERRIDE)
+bool flush_modifiers(bool key_down, void* context)
+{
+    send_keyboard_report();
+    return true;
+}
 const key_override_t lcbr_key_override           = ko_make_basic(MOD_MASK_SHIFT, KC_LCBR, KC_RCBR);
-const key_override_t lbrc_key_override           = ko_make_basic(MOD_MASK_SHIFT, KC_LBRC, KC_RBRC);
 const key_override_t lprn_key_override           = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_RPRN);
-const key_override_t spc_gui_key_override        = ko_make_basic(MOD_BIT_RGUI, KC_SPC, LGUI(KC_BSPC));
-const key_override_t spc_alt_key_override        = ko_make_basic(MOD_MASK_ALT, KC_SPC, LALT(KC_BSPC));
-const key_override_t spc_shift_key_override      = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_BSPC);
-const key_override_t vol_up_shift_key_override   = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_MPLY);
+const key_override_t lbrc_key_override = {
+    .trigger_mods    = MOD_MASK_SHIFT,
+    .trigger         = KC_LBRC,
+    .replacement     = KC_RBRC,
+    .layers          = ~0,
+    // We need to suppress shift from the output to ensure we get ] and not }
+    .suppressed_mods = MOD_MASK_SHIFT,
+    // For some reason the shift is not cleared if Karabiner is running,
+    // so we must manually flush the modifiers first to ensure that they
+    // are cleared by the time that our replacement is sent
+    .custom_action   = flush_modifiers,
+    .options         = ko_options_default,
+    .enabled         = NULL
+};
+
+const key_override_t spc_gui_key_override = ko_make_basic(MOD_BIT_RGUI, KC_SPC, LGUI(KC_BSPC));
+const key_override_t spc_alt_key_override = ko_make_basic(MOD_MASK_ALT, KC_SPC, LALT(KC_BSPC));
+const key_override_t spc_shift_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_SPC, KC_BSPC);
+const key_override_t vol_up_shift_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_MPLY);
 const key_override_t vol_down_shift_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_VOLD, KC_MUTE);
 
 // This globally defines all key overrides to be used
@@ -330,7 +349,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &spc_shift_key_override,
     &vol_up_shift_key_override,
     &vol_down_shift_key_override,
-    NULL // Null terminate the array of overrides!
+	NULL // Null terminate the array of overrides!
 };
 #endif
 
