@@ -129,8 +129,8 @@ enum gagregrog_keycodes {
 #define _________________UTILITY_L3________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
 
 #define _________________UTILITY_R1________________       XXXXXXX,   KC_MV_UL,  KC_MV_U,   KC_MV_UR,  XXXXXXX
-#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   KC_MV_C,   KC_MV_R,   XXXXXXX
-#define _________________UTILITY_R3________________       XXXXXXX,   HR_MV_DL,  HR_MV_D,   HR_MV_DR,  XXXXXXX
+#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   HR_MV_C,   HR_MV_R,   XXXXXXX
+#define _________________UTILITY_R3________________       XXXXXXX,   KC_MV_DL,  KC_MV_D,   KC_MV_DR,  XXXXXXX
 
 #define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   QK_MAKE
 #define _________________SETTINGS_L2_______________       XXXXXXX,   XXXXXXX,   XXXXXXX,   HR_MACL,   XXXXXXX
