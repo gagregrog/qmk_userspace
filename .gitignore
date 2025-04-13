@@ -9,6 +9,12 @@
 *.hex
 *.bin
 *.uf2
-.python-version
 
+# clangd
+compile_commands.json
+.clangd/
+.cache/
+
+# personal
+.python-version
 secrets.h
