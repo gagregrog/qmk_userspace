@@ -31,6 +31,9 @@ ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
     SRC += $(USER_PATH)/tap_dance/tap_dance_utils.c
 endif
 
+ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+    SRC += $(USER_PATH)/overrides/overrides.c
+endif
 
 # Custom Features that can be added
 
