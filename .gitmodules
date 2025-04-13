@@ -1,0 +1,3 @@
+[submodule "users/gagregrog/sm_td"]
+	path = users/gagregrog/sm_td
+	url = git@github.com:gagregrog/sm_td.git

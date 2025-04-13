@@ -33,13 +33,68 @@ enum gagregrog_keycodes {
     AM_TOGGLE,
     AM_KILL,
 #endif
-    KC_HRM_MAC_LOCK,
-    KC_HRM_MV_R,
-    KC_HRM_MV_C,
-    KC_HRM_MV_L,
-    KC_HRM_MV_DL,
-    KC_HRM_MV_D,
-    KC_HRM_MV_DR,
+    // we use dummy keycodes when we need to trigger more complicated
+    // keycodes on top of HRM keys
+    HR_MACL, // lock mac
+    HR_MV_L,
+    HR_MV_C,
+    HR_MV_R,
+    HR_LCTL,
+    HR_LALT,
+    HR_LGUI,
+    HR_LSFT,
+    HR_RCTL,
+    HR_RALT,
+    HR_RGUI,
+    HR_RSFT,
+    SMTD_KEYCODES_BEGIN, // required to mark the start of sm_td range
+    // prefix keycodes by SM_ for interoperation between sm_td macros and hrm macros
+    SM_XXXXXXX,
+    SM_HR_LCTL,
+    SM_HR_LALT,
+    SM_HR_LGUI,
+    SM_HR_LSFT,
+    SM_HR_RCTL,
+    SM_HR_RALT,
+    SM_HR_RGUI,
+    SM_HR_RSFT,
+    // -- Colemak DH
+    SM_KC_A,
+    SM_KC_R,
+    SM_KC_S,
+    SM_KC_T,
+    SM_KC_N,
+    SM_KC_E,
+    SM_KC_I,
+    SM_KC_O,
+    // -- Qwerty
+    // SM_KC_A, --dedupe from colemak
+    // SM_KC_S, -- dedupe from colemak
+    SM_KC_D,
+    SM_KC_F,
+    SM_KC_J,
+    SM_KC_K,
+    SM_KC_L,
+    SM_KC_QUOT,
+    // -- NUMERIC
+    SM_KC_ESC,
+    SM_KC_LEFT,
+    SM_KC_DOWN,
+    SM_KC_RIGHT,
+    SM_KC_4,
+    SM_KC_5,
+    SM_KC_6,
+    SM_KC_SCLN,
+    // -- Utility
+    SM_KC_MPRV,
+    SM_KC_VOLD,
+    SM_KC_MNXT,
+    SM_HR_MV_L,
+    SM_HR_MV_C,
+    SM_HR_MV_R,
+    // -- Settings
+    SM_HR_MACL,
+    SMTD_KEYCODES_END, // required to mark the end of sm_td range
     NEW_SAFE_RANGE,
 };
 
@@ -67,17 +122,7 @@ enum gagregrog_keycodes {
 #define KC_MV_DR LCAG(KC_F16)
 
 // lock mac screen
-#define KC_MAC_LOCK LGUI(LCTL(KC_Q))
-#define HR_MACL KC_HRM_MAC_LOCK
-
-// hrm windowing shortcuts
-// these are needed when a HRM key overlaps with a window shortcut
-#define HR_MV_R KC_HRM_MV_R
-#define HR_MV_C KC_HRM_MV_C
-#define HR_MV_L KC_HRM_MV_L
-#define HR_MV_DL KC_HRM_MV_DL
-#define HR_MV_D KC_HRM_MV_D
-#define HR_MV_DR KC_HRM_MV_DR
+#define KC_MACL LGUI(LCTL(KC_Q))
 
 #if defined(TRACKPOINT_ENABLE)
 #    define TRACKPT KC_NO
@@ -125,19 +170,19 @@ enum gagregrog_keycodes {
 #define _________________NUMERIC_R3________________       KC_LBRC,   KC_1,      KC_2,      KC_3,      KC_BSLS
 
 #define _________________UTILITY_L1________________       XXXXXXX,   XXXXXXX,   KC_VOLU,   XXXXXXX,   XXXXXXX
-#define _________________UTILITY_L2________________       XXXXXXX,   KC_MPRV,   KC_VOLD,   KC_MNXT,   XXXXXXX
+#define _________________UTILITY_L2________________       HR_LCTL,   KC_MPRV,   KC_VOLD,   KC_MNXT,   XXXXXXX
 #define _________________UTILITY_L3________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
 
 #define _________________UTILITY_R1________________       XXXXXXX,   KC_MV_UL,  KC_MV_U,   KC_MV_UR,  XXXXXXX
-#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   KC_MV_C,   KC_MV_R,   XXXXXXX
-#define _________________UTILITY_R3________________       XXXXXXX,   HR_MV_DL,  HR_MV_D,   HR_MV_DR,  XXXXXXX
+#define _________________UTILITY_R2________________       XXXXXXX,   HR_MV_L,   HR_MV_C,   HR_MV_R,   HR_RCTL
+#define _________________UTILITY_R3________________       XXXXXXX,   KC_MV_DL,  KC_MV_D,   KC_MV_DR,  XXXXXXX
 
-#define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   XXXXXXX,   XXXXXXX,   QK_MAKE
-#define _________________SETTINGS_L2_______________       XXXXXXX,   XXXXXXX,   XXXXXXX,   HR_MACL,   XXXXXXX
+#define _________________SETTINGS_L1_______________       QK_BOOT,   XXXXXXX,   KC_UP,     XXXXXXX,   QK_MAKE
+#define _________________SETTINGS_L2_______________       HR_LCTL,   KC_LEFT,   KC_DOWN,   KC_RIGHT,  XXXXXXX
 #define _________________SETTINGS_L3_______________       _________________NOPE_X5___________________
 
 #define _________________SETTINGS_R1_______________       TG_HRM,    XXXXXXX,   XXXXXXX,   XXXXXXX,   TG_BASE
-#define _________________SETTINGS_R2_______________       KC_H,      KC_J,      KC_K,      KC_L,      XXXXXXX
+#define _________________SETTINGS_R2_______________       KC_H,      KC_J,      KC_K,      KC_L,      HR_RCTL
 #define _________________SETTINGS_R3_______________       RGB_TOG,   RGB_MOD,   XXXXXXX,   XXXXXXX,   AM_TG_SF
 
 

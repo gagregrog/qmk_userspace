@@ -10,6 +10,10 @@ CONSOLE_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
 USE_DEFAULT_TD_ACTIONS = yes
 
+# Setup sm_td in place of HRM
+DEFERRED_EXEC_ENABLE = yes
+SRC += $(USER_PATH)/sm_td/sm_td.c
+
 # Utilities to add automatically when certain features are enabled
 
 ifeq ($(strip $(OLED_ENABLE)), yes)
