@@ -231,7 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         debug_rgb_matrix(keycode, record->event.pressed);
         return true;
 #endif
-    // replace with better ifdef
+    // TODO: replace with better ifdef
     #if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
       case TG_BASE:
         if (record->event.pressed) {

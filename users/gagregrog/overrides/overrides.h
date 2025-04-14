@@ -15,7 +15,7 @@ enum {
     SPC_SHIFT_OVERRIDE,
     VOL_UP_SHIFT_OVERRIDE,
     VOL_DOWN_SHIFT_OVERRIDE,
-    KEY_OVERRIDE_COUNT, // must keep this final member for introspection to work
+    KEY_OVERRIDE_COUNT, // must keep this final member for key override introspection to work
 };
 
 extern const key_override_t *key_overrides[KEY_OVERRIDE_COUNT];

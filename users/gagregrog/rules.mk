@@ -8,7 +8,6 @@ CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes
 CONSOLE_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
-USE_DEFAULT_TD_ACTIONS = yes
 
 # Utilities to add automatically when certain features are enabled
 
@@ -25,6 +24,14 @@ else
 			OPT_DEFS += -DDEBUG_RGB_MATRIX
 		endif
 	endif
+endif
+
+ifeq ($(strip $(DEFAULT_TAP_DANCES_ENABLE)), yes)
+    SRC += $(USER_PATH)/tap_dance/default/default_tap_dances.c
+	OPT_DEFS += -DDEFAULT_TAP_DANCES_ENABLE
+    ifneq ($(strip $(TAP_DANCE_ENABLE)), yes)
+        TAP_DANCE_ENABLE = yes
+    endif
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
@@ -71,11 +78,6 @@ ifeq ($(strip $(MOUSE_TURBO_CLICK)), yes)
         MOUSEKEY_ENABLE = yes
     endif
 endif
-
-ifeq ($(strip $(USE_DEFAULT_TD_ACTIONS)), yes)
-    OPT_DEFS += -DUSE_DEFAULT_TD_ACTIONS
-endif
-
 
 # support secrets cascading in order of precedence from:
 #   - keyboards/:keyboard/:keymap/secrets.h

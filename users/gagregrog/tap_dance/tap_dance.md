@@ -2,16 +2,27 @@
 
 When Tap Dances are enabled, these utilities will be automatically included. These utils allow you to define key taps/hold behaviors for `KC_` keycodes, unicode characters (using the unicode map), `KC_SECRET_`S, user-defined functions, strings to send, and layer moves/toggles.
 
+## Default Tap Dances
+
+Some basic tap dances have been pre-configured and can be pulled in by setting `DEFAULT_TAP_DANCES_ENABLE = yes` in the `rules.mk` adjacent to your keymap.
+
+Take a look at [default/default_tap_dances.c](./default/default_tap_dances.c) to see what is pre-configured. Note that using default tap dances and defining your own tap dances are mutually exclusive actions.
+
 ## Configuration
 
 In your `keymap.c`, create an enum to hold all of your tap dances. Then, for convenience, create defines for the new keycodes to use in your layout.
 
+> Note: Make sure to define a final enum member which will be used to define the number of tap dances you are using and then `extern` the `tap_dance_actions` array.
+
 ```c
 enum tap_dance_keys {
-  T_MY_DANCE,
+    T_MY_DANCE,
+    TAP_DANCE_COUNT, // must keep this final member for tap dance introspection to work
 };
 
 #define TD_MY_DANCE     TD(T_MY_DANCE)
+
+extern tap_dance_action_t tap_dance_actions[TAP_DANCE_COUNT];
 ```
 
 Next, create an array to hold your tap dance actions. Each even index (starting with index 0) will correspond to a tap action, and each odd index will correspond to a hold action.
@@ -117,9 +128,12 @@ Let's create a basic tap dance with some macros, some secrets, a function, and a
 enum tap_dance_keys {
   T_L1_K1,
   T_L1_K2,
+  TAP_DANCE_COUNT, // must keep this final member for tap dance introspection to work
 };
 #define TD_L1_K1     TD(T_L1_K1)
 #define TD_L1_K2     TD(T_L1_K2)
+
+extern tap_dance_action_t tap_dance_actions[TAP_DANCE_COUNT];
 
 // example for the handwired/twokey key keyboard, but works similarly for other keyboards
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -178,10 +192,13 @@ enum tap_dance_keys {
   T_L1_K1,
   T_L2_K2,
   T_L3_K2,
+  TAP_DANCE_COUNT, // must keep this final member for tap dance introspection to work
 };
 #define TD_L1_K1     TD(T_L1_K1)
 #define TD_L2_K2     TD(T_L2_K2)
 #define TD_L3_K2     TD(T_L3_K2)
+
+extern tap_dance_action_t tap_dance_actions[TAP_DANCE_COUNT];
 
 // example for the handwired/twokey key keyboard, but applies similarly for other keyboards
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -306,6 +323,7 @@ void td_handle_L1_K2(TD_ARGS_GAGREGROG);
 enum tap_dance_keys {
   T_L1_K1,
   T_L1_K2,
+  TAP_DANCE_COUNT, // must keep this final member for tap dance introspection to work
 };
 
 #define TD_L1_K1 TD(T_L1_K1)

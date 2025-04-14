@@ -14,6 +14,10 @@
 #    include "mouse_turbo_click/mouse_turbo_click.h"
 #endif // MOUSE_TURBO_CLICK
 
+#if defined(DEFAULT_TAP_DANCES_ENABLE)
+#    include "tap_dance/default/default_tap_dances.h"
+#endif // DEFAULT_TAP_DANCES_ENABLE
+
 #if defined(TAP_DANCE_ENABLE)
 #    include "tap_dance/tap_dance_utils.h"
 #endif // TAP_DANCE_ENABLE

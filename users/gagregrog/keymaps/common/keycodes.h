@@ -32,7 +32,7 @@ enum gagregrog_keycodes {
 #if defined(POINTING_DEVICE_ENABLE)
     AM_TOGGLE,
     AM_KILL,
-#endif
+#endif // POINTING_DEVICE_ENABLE
     KC_HRM_MAC_LOCK,
     KC_HRM_MV_R,
     KC_HRM_MV_C,
@@ -95,6 +95,15 @@ enum gagregrog_keycodes {
 #define MO_SETS MO(_LAYER_SETTINGS)
 #define SETS_PLS LT(_LAYER_SETTINGS, KC_PLUS)
 #define SETS_EQL LT(_LAYER_SETTINGS, KC_EQL)
+
+// TODO: implement useful tap dances
+#if defined(DEFAULT_TAP_DANCES_ENABLE)
+#    define MO_SPC TD_MO_SPC
+#    define MO_BSPC TD_MO_BSPC
+#else
+#    define MO_SPC KC_SPC
+#    define MO_BSPC KC_BSPC
+#endif
 
 #define _________________TRNS_X5___________________ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 #define _________________NOPE_X5___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX

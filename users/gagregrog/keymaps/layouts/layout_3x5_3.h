@@ -1,12 +1,13 @@
 #pragma once
 #include QMK_KEYBOARD_H
+#include "gagregrog.h"
 
 // clang-format off
 
 #define LAYOUT_wrapper(...) LAYOUT_split_3x5_3_h(__VA_ARGS__)
 #define LAYOUT_HRM_wrapper(...) LAYOUT_wrapper(HOME_ROW_MOD_CAGS_5(__VA_ARGS__))
 
-#define THUMB_TRNS          KC_TRNS,  KC_TRNS,  KC_TRNS
+#define THUMB_TRNS          KC_TRNS, KC_TRNS, KC_TRNS
 #define BASE_THUMB_L        KC_BTN1, KC_SPC,  NUM_GRV
 #define BASE_THUMB_R        UTIL_MN, KC_BSPC, KC_ENT
 

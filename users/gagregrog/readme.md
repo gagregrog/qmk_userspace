@@ -32,3 +32,7 @@ Check out [tap_dance.md](./tap_dance/tap_dance.md) to see all of the great featu
 ### Mouse Turbo Click
 
 Add `MOUSE_TURBO_CLICK = yes` to your `rules.mk` to enable turbo click! Use `MS_TURBO` keycode to rapid fire mouse click. This will automatically enable `MOUSEKEY_ENABLE` and `DEFERRED_EXEC_ENABLE` features. This feature was taken from https://getreuer.info/posts/keyboards/mouse-turbo-click/index.html.
+
+### TODO: Update this Readme :-)
+
+The list of features here is not up to date, so look at all of the individual directories within `users/gagregrog` to get a sense of what is available, and in particular take a look at `[rules.mk](./rules.mk)` and `[gagregrog.c](./gagregrog.c)` to see what has been implemented by default, and what can be enabled.
