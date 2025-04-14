@@ -2,14 +2,19 @@
 
 SRC += gagregrog.c
 
+# ###############
 # Always Features
+# ###############
 
 CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes
 CONSOLE_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
+KARABINER = yes
 
+# ################################################################
 # Utilities to add automatically when certain features are enabled
+# ################################################################
 
 ifeq ($(strip $(OLED_ENABLE)), yes)
     SRC += $(USER_PATH)/oled/oled_util.c
@@ -24,6 +29,10 @@ else
 			OPT_DEFS += -DDEBUG_RGB_MATRIX
 		endif
 	endif
+endif
+
+ifeq ($(strip $(KARABINER)), yes)
+	OPT_DEFS += -DKARABINER
 endif
 
 ifeq ($(strip $(DEFAULT_TAP_DANCES_ENABLE)), yes)

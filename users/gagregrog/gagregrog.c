@@ -224,26 +224,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_mouse_turbo_click(keycode, record, MS_TURBO)) { return false; }
   #endif // MOUSE_TURBO_CLICK
 
+  static bool is_colemak_enabled = true;
+  static bool is_hrm_enabled = true;
+
   switch (keycode) {
+#if defined(KARABINER)
+    // For karabiner we use space and backspace to activate built in layers,
+    // so we need to ensure that HRMs are disabled when space is activated
+    // so that we are able to activate sublayers while space/backspace is held
+    case KC_BSPC:
+    case KC_SPC:
+      if (!is_hrm_enabled) {
+        return true;
+      }
+
+      if (record->event.pressed) {
+        if (is_colemak_enabled) {
+          layer_on(_LAYER_COLEMAK_DH);
+        } else {
+          layer_on(_LAYER_QWERTY);
+        }
+      } else {
+        if (is_colemak_enabled) {
+          layer_off(_LAYER_COLEMAK_DH);
+        } else {
+          layer_off(_LAYER_QWERTY);
+        }
+      }
+
+      return true;
+#endif // KARABINER
 #if defined(DEBUG_RGB_MATRIX)
     case RGB_MOD:
     case RGB_TOG:
         debug_rgb_matrix(keycode, record->event.pressed);
         return true;
-#endif
+#endif // DEBUG_RGB_MATRIX
     // TODO: replace with better ifdef
     #if defined(LAYOUT_split_3x5_3_h) || defined(LAYOUT_split_4x6_6)
       case TG_BASE:
         if (record->event.pressed) {
           if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
+            is_colemak_enabled = true;
             layer_off(_LAYER_QWERTY_HRM);
           } else if (IS_LAYER_ON(_LAYER_QWERTY)) {
+            is_colemak_enabled = true;
             layer_on(_LAYER_COLEMAK_DH);
             layer_off(_LAYER_QWERTY);
           } else if (IS_LAYER_ON(_LAYER_COLEMAK_DH)) {
+            is_colemak_enabled = false;
             layer_on(_LAYER_QWERTY);
             layer_off(_LAYER_COLEMAK_DH);
           } else {
+            is_colemak_enabled = false;
             layer_on(_LAYER_QWERTY_HRM);
           }
         }
@@ -251,14 +284,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case TG_HRM:
         if (record->event.pressed) {
           if (IS_LAYER_ON(_LAYER_QWERTY_HRM)) {
+            is_hrm_enabled = false;
             layer_on(_LAYER_QWERTY);
             layer_off(_LAYER_QWERTY_HRM);
           } else if (IS_LAYER_ON(_LAYER_QWERTY)) {
+            is_hrm_enabled = true;
             layer_on(_LAYER_QWERTY_HRM);
             layer_off(_LAYER_QWERTY);
           } else if (IS_LAYER_ON(_LAYER_COLEMAK_DH)) {
+            is_hrm_enabled = true;
             layer_off(_LAYER_COLEMAK_DH);
           } else {
+            is_hrm_enabled = false;
             layer_on(_LAYER_COLEMAK_DH);
           }
         }
