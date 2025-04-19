@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "gagregrog.h"
+#include "./layout_core.h"
 
 // clang-format off
 

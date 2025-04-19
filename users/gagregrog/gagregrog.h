@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "keymaps/keymap.h"
+#include "utils/keycode_utils.h"
 
 #if defined(OLED_ENABLE)
 #    include "oled/oled_util.h"

@@ -1,5 +1,6 @@
 #pragma once
 #include QMK_KEYBOARD_H
+#include "./layout_core.h"
 
 // clang-format off
 

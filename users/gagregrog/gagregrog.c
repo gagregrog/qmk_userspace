@@ -217,8 +217,6 @@ bool process_record_hrm(uint16_t keycode, keyrecord_t *record) {
   return !record->tap.count;
 }
 
-// Initialize variable holding the binary
-// representation of active modifiers.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #ifdef MOUSE_TURBO_CLICK
     if (!process_mouse_turbo_click(keycode, record, MS_TURBO)) { return false; }
@@ -341,8 +339,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return true;
     #endif // POINTING_DEVICE_AUTO_MOUSE_ENABLE
-    // for any advanced keycodes with HRM we must check for the matched key
-    // and then manually send the advanced keycode
+
+    // [START] SHIFTED KEYCODES
+    // Automatically shifted keycodes such as () and {}
+    // inconsistently register when Karabiner is enabled
+    // so we add a slight delay after registering the mod
+    // before we send the key to ensure the shift is registered
+    case PR_LPRN:
+        // "9" maps to "(" when shifted
+        return process_key_after_mods(KC_9, MOD_LSFT, record);
+    case PR_RPRN:
+        // "0" maps to ")" when shifted
+        return process_key_after_mods(KC_0, MOD_LSFT, record);
+    case PR_LCBR:
+        // "[" maps to "{" when shifted
+        return process_key_after_mods(KC_LBRC, MOD_LSFT, record);
+    case PR_RCBR:
+        // "]" maps to "}" when shifted
+        return process_key_after_mods(KC_RBRC, MOD_LSFT, record);
+    // [END] SHIFTED KEYCODES
+
+    // [START] HRM ADVANCED KEYCODES
+    // for any advanced keycodes used with HRM we
+    // create a custom keycode and then manually
+    // manage the desired outcome here
     case RSFT_T(KC_HRM_MAC_LOCK):
       return process_record_hrm(KC_MAC_LOCK, record);
     case RSFT_T(KC_HRM_MV_L):
@@ -357,6 +377,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return process_record_hrm(KC_MV_D, record);
     case LALT_T(KC_HRM_MV_DR):
       return process_record_hrm(KC_MV_DR, record);
+    // [END] HRM ADVANCED KEYCODES
+
     default:
     #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
       return process_record_keymap(keycode, record) && process_record_secrets(keycode, record);

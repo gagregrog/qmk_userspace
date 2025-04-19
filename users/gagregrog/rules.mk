@@ -16,6 +16,8 @@ KARABINER = yes
 # Utilities to add automatically when certain features are enabled
 # ################################################################
 
+SRC += $(USER_PATH)/utils/keycode_utils.c
+
 ifeq ($(strip $(OLED_ENABLE)), yes)
     SRC += $(USER_PATH)/oled/oled_util.c
 endif
