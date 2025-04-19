@@ -29,16 +29,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef USE_I2C
 
 #undef MATRIX_COL_PINS
-#define MATRIX_COL_PINS \
-    { B5, B4, E6, D7, C6, D4 }
+#define MATRIX_COL_PINS {B5, B4, E6, D7, C6, D4}
 
 #undef RGBLIGHT_LED_COUNT
 #define RGBLIGHT_LED_COUNT 14
 
 // Synchronization of the RGB light modes between the two controllers
 #define RGBLIGHT_SPLIT
-#define RGBLED_SPLIT \
-    { 7, 7 }
+#define RGBLED_SPLIT {7, 7}
 
 #define RGBLIGHT_LIMIT_VAL 200 /* The maximum brightness level */
 #define RGBLIGHT_SLEEP         /* RGB lighting will be switched off when the host goes to sleep */
@@ -56,9 +54,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // permissive hold - pressing a mod-tap key and pressing/releasing a second key before the mod-tap key is released registers the mod-tap immediately, even if before the tapping term has been reached
 #define PERMISSIVE_HOLD
 
-// disable features to try and shrink the firmware size
+// note: as firmware space is extremely limited on the pro micro
+// we need to try and disable any features we aren't using to save space
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_ACTION_ONESHOT
 #define LAYER_STATE_8BIT
 #undef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+
+#define NO_DEBUG
+// disabling print saves over 4k bytes!
+#define NO_PRINT
