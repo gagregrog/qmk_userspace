@@ -10,6 +10,8 @@
 
 /**
  * Take 4 keys and wrap them in the CAGS HRM Right
+ * NOTE: We send LALT instead of RALT to avoid AltGr issues
+ * https://precondition.github.io/home-row-mods#use-left-and-right-modifiers-but-beware-of-altgr
 */
 #define HOME_ROW_MOD_CAGS_RIGHT(HRM_R0, HRM_R1, HRM_R2, HRM_R3) RSFT_T(HRM_R0), RGUI_T(HRM_R1), LALT_T(HRM_R2), RCTL_T(HRM_R3)
 

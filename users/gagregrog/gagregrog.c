@@ -388,6 +388,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
+#if defined(COMBO_ENABLE)
+uint32_t combo_homerow_scroll_timer = 0;
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case COMBO_HRM_CTL:
+            if (pressed) {
+                tap_code(KC_F21);
+            }
+            break;
+        case COMBO_HRM_ALT:
+            if (pressed) {
+                tap_code(KC_F22);
+            }
+            break;
+        case COMBO_HRM_GUI:
+            if (pressed) {
+                tap_code(KC_F23);
+            }
+            break;
+        case COMBO_HRM_SFT:
+            if (pressed) {
+                combo_homerow_scroll_timer = timer_read32();
+            } else {
+                uint32_t duration = timer_read32() - combo_homerow_scroll_timer;
+                if (duration < 500) {
+                    tap_code(KC_F24);
+                } else {
+                    caps_word_on();
+                }
+            }
+            break;
+    }
+}
+#endif // COMBO_ENABLE
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case LGUI_T(KC_S):

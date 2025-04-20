@@ -54,7 +54,11 @@
 #    define OLED_SCROLL_TIMEOUT 2000
 #endif // OLED_ENABLE
 
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#ifndef COMBO_ENABLE
+// if COMBO_ENABLE is enabled then we handle caps word manually via a combo
+#    define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#endif // COMBO_ENABLE (not defined)
+
 #define ENABLE_COMPILE_KEYCODE
 
 #ifdef POINTING_DEVICE_ENABLE

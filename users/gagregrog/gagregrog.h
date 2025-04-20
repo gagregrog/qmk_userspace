@@ -23,6 +23,10 @@
 #    include "tap_dance/tap_dance_utils.h"
 #endif // TAP_DANCE_ENABLE
 
+#if defined(COMBO_ENABLE)
+#    include "combos/combos.h"
+#endif // COMBO_ENABLE
+
 #ifdef KEY_OVERRIDE_ENABLE
 #    include "overrides/overrides.h"
 #endif // KEY_OVERRIDE_ENABLE
