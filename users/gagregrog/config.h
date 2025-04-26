@@ -68,10 +68,9 @@
 #    define MOUSE_CPI 2000
 #endif // POINTING_DEVICE_ENABLE
 
-#define TAPPING_TERM_PER_KEY
 #ifndef TAPPING_TERM
-#    define TAPPING_TERM 175
-#endif // TAPPING_TERM_PER_KEY
+#    define TAPPING_TERM 250
+#endif // TAPPING_TERM
 
 #ifdef TAP_DANCE_ENABLE
 #    define CHORDAL_HOLD

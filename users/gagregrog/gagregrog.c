@@ -423,15 +423,3 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 #endif // COMBO_ENABLE
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case LGUI_T(KC_S):
-    case RGUI_T(KC_E):
-    case LSFT_T(KC_T):
-    case RSFT_T(KC_N):
-        // xprintf("200\n");
-        return 130;
-    default:
-        return TAPPING_TERM;
-  }
-}
