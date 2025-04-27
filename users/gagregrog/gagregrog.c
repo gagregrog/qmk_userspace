@@ -423,3 +423,44 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 #endif // COMBO_ENABLE
 
+char chordal_hold_handedness(keypos_t key) {
+    // Exempt the thumb layer keys on each side from being affected by Chordal Hold
+    if (key.col == 4 && (key.row == 3 || key.row == 7)) {
+        return '*';
+    }
+
+    // On split keyboards, typically, the first half of the rows are on the
+    // left, and the other half are on the right.
+    return key.row < MATRIX_ROWS / 2 ? 'L' : 'R';
+}
+
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, uint16_t other_keycode, keyrecord_t* other_record) {
+    // return *true* to treat as a mod hold
+    // return *false* to treat as a tap
+
+    // Exceptionally allow some one-handed chords
+    switch (tap_hold_keycode) {
+        case RSFT_T(KC_N):
+            // allow right hand shift + ' to trigger "
+            // allow right hand shift + / to trigger ?
+            if (other_keycode == KC_QUOT || other_keycode == KC_SLASH) {
+                return true;
+            }
+            break;
+        case LGUI_T(KC_S):
+            // allow left hand gui + <space> to trigger gui + space
+            if (other_keycode == KC_SPC) {
+                return true;
+            }
+            break;
+        case RGUI_T(KC_E):
+            // allow right hand gui + <backspace> to trigger gui + backspace
+            if (other_keycode == KC_BSPC) {
+                return true;
+            }
+            break;
+    }
+
+    // Otherwise defer to the opposite hands rule.
+    return get_chordal_hold_default(tap_hold_record, other_record);
+}
