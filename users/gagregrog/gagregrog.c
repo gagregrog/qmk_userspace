@@ -218,6 +218,10 @@ bool process_record_hrm(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  #ifdef DEBUG_MATRIX
+    uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+  #endif
+
   #ifdef MOUSE_TURBO_CLICK
     if (!process_mouse_turbo_click(keycode, record, MS_TURBO)) { return false; }
   #endif // MOUSE_TURBO_CLICK

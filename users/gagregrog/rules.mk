@@ -30,6 +30,9 @@ else
 		    SRC += $(USER_PATH)/led/led_util.c
 			OPT_DEFS += -DDEBUG_RGB_MATRIX
 		endif
+		ifeq ($(strip $(DEBUG_MATRIX)), yes)
+			OPT_DEFS += -DDEBUG_MATRIX
+		endif
 	endif
 endif
 
