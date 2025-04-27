@@ -416,7 +416,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_homerow_scroll_timer = timer_read32();
             } else {
                 uint32_t duration = timer_read32() - combo_homerow_scroll_timer;
-                if (duration < 500) {
+                if (duration < 250) {
                     tap_code(KC_F24);
                 } else {
                     caps_word_on();
