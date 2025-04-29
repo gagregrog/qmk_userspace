@@ -427,16 +427,26 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 #endif // COMBO_ENABLE
 
-char chordal_hold_handedness(keypos_t key) {
-    // Exempt the thumb layer keys on each side from being affected by Chordal Hold
-    if (key.col == 4 && (key.row == 3 || key.row == 7)) {
-        return '*';
-    }
-
-    // On split keyboards, typically, the first half of the rows are on the
-    // left, and the other half are on the right.
-    return key.row < MATRIX_ROWS / 2 ? 'L' : 'R';
-}
+// exempt all thumb keys from chordal hold rules
+#if defined(LAYOUT_split_3x5_3_h)
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_3x5_3_h(
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+                  '*', '*', '*',  '*', '*', '*'
+    );
+#elif defined(LAYOUT_split_4x6_6)
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_4x6_6(
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+                            '*', '*',  '*', '*',
+                            '*', '*',  '*', '*',
+                            '*', '*',  '*', '*'
+    );
+#endif // LAYOUT_split_3x5_3_h || LAYOUT_split_4x6_6
 
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, uint16_t other_keycode, keyrecord_t* other_record) {
     // return *true* to treat as a mod hold
@@ -447,19 +457,8 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, u
         case RSFT_T(KC_N):
             // allow right hand shift + ' to trigger "
             // allow right hand shift + / to trigger ?
-            if (other_keycode == KC_QUOT || other_keycode == KC_SLASH) {
-                return true;
-            }
-            break;
-        case LGUI_T(KC_S):
-            // allow left hand gui + <space> to trigger gui + space
-            if (other_keycode == KC_SPC) {
-                return true;
-            }
-            break;
-        case RGUI_T(KC_E):
-            // allow right hand gui + <backspace> to trigger gui + backspace
-            if (other_keycode == KC_BSPC) {
+            // allow right hand shift + ; to trigger :
+            if (other_keycode == KC_QUOT || other_keycode == KC_SLASH || other_keycode == KC_SCLN) {
                 return true;
             }
             break;
