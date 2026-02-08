@@ -37,7 +37,7 @@ This is a template repository which allows for an external set of QMK keymaps to
     * This will be automatically detected if you've `cd`ed into your userspace repository, but the above makes your userspace available regardless of your shell location.
 1. Compile normally: `qmk compile -kb your_keyboard -km your_keymap` or `make your_keyboard:your_keymap`
 
-Alternatively, if you configured your build targets above, you can use `qmk userspace-compile` to build all of your userspace targets at once.
+Alternatively, if you configured your build targets above, you can use `qmk userspace-compile` to build all of your userspace targets at once. This will compile all keyboards and keymaps listed in `qmk.json`.
 
 ## Extra info
 
