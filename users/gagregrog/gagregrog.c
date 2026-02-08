@@ -257,8 +257,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
 #endif // KARABINER
 #if defined(DEBUG_RGB_MATRIX)
-    case RGB_MOD:
-    case RGB_TOG:
+    case RM_NEXT:
+    case RM_TOGG:
         debug_rgb_matrix(keycode, record->event.pressed);
         return true;
 #endif // DEBUG_RGB_MATRIX
@@ -333,8 +333,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             auto_mouse_layer_off();
         }
         return false;
-      case KC_BTN1:
-      case KC_BTN2:
+      case MS_BTN1:
+      case MS_BTN2:
         if(get_mods() & MOD_MASK_SHIFT) {
           // runs on both press and release since otherwise this is treated
           // as a mouse key and reactivates the mouse layer

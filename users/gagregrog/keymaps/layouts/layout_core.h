@@ -45,7 +45,13 @@
 
 #define _________________SETTINGS_R1_______________       TG_HRM,    XXXXXXX,   XXXXXXX,   XXXXXXX,   TG_BASE
 #define _________________SETTINGS_R2_______________       KC_H,      KC_J,      KC_K,      KC_L,      XXXXXXX
-#define _________________SETTINGS_R3_______________       RGB_TOG,   RGB_MOD,   XXXXXXX,   XXXXXXX,   AM_TG_SF
+#if defined(RGB_MATRIX_ENABLE)
+#define _________________SETTINGS_R3_______________       RM_TOGG,   RM_NEXT,   XXXXXXX,   XXXXXXX,   AM_TG_SF
+#elif defined(RGBLIGHT_ENABLE)
+#define _________________SETTINGS_R3_______________       UG_TOGG,   UG_NEXT,   XXXXXXX,   XXXXXXX,   AM_TG_SF
+#else
+#define _________________SETTINGS_R3_______________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   AM_TG_SF
+#endif
 
 
 #define LAYOUT_CORE_COLEMAK_DH                                                                                \

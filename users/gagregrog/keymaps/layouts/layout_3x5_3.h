@@ -9,7 +9,7 @@
 #define LAYOUT_HRM_wrapper(...) LAYOUT_wrapper(HOME_ROW_MOD_CAGS_5(__VA_ARGS__))
 
 #define THUMB_TRNS          KC_TRNS, KC_TRNS, KC_TRNS
-#define BASE_THUMB_L        KC_BTN1, KC_SPC,  NUM_GRV
+#define BASE_THUMB_L        MS_BTN1, KC_SPC,  NUM_GRV
 #define BASE_THUMB_R        UTIL_MN, KC_BSPC, KC_ENT
 
 /**
@@ -49,8 +49,8 @@
                 SETTINGS_THUMB_L,    SETTINGS_THUMB_R
 
 #ifdef POINTING_DEVICE_ENABLE
-#   define MOUSE_THUMB_L       KC_TRNS,   KC_BTN1,   KC_BTN2
-#   define MOUSE_THUMB_R       KC_BTN2,   KC_BTN1,   AM_KILL
+#   define MOUSE_THUMB_L       KC_TRNS,   MS_BTN1,   MS_BTN2
+#   define MOUSE_THUMB_R       MS_BTN2,   MS_BTN1,   AM_KILL
 #else
 #   define MOUSE_THUMB_L       THUMB_TRNS
 #   define MOUSE_THUMB_R       THUMB_TRNS

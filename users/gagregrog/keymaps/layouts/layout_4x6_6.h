@@ -39,7 +39,7 @@
     L12,     L13,     L14,     L15,     L16,     L17,               R18,     R19,     R20,     R21,     R22,     R23,    \
     L24,     L25,     L26,     L27,     L28,     L29,               R30,     R31,     R32,     R33,     R34,     R35,    \
                       KC_LBRC, KC_RBRC,                                               KC_LCBR, KC_RCBR,                  \
-                                        KC_BTN1, KC_SPC,            TRACKPT, KC_ENT,                                     \
+                                        MS_BTN1, KC_SPC,            TRACKPT, KC_ENT,                                     \
                                         KC_GRV,  NUM_GRV,           UTIL_MN, KC_MINS,                                    \
                                         MS_SCL_P,MS_SCL_L,          KC_TRNS, KC_TRNS
 
@@ -62,7 +62,7 @@
         )                                                                                                                \
     )
 
-#define LEFT_COLUMN_NUMERIC  RGB_VAD, RGB_VAI, RGB_MOD
+#define LEFT_COLUMN_NUMERIC  UG_VALD, UG_VALU, UG_NEXT
 #define RIGHT_COLUMN_NUMERIC KC_PAST, KC_PPLS, KC_PIPE
 
 #define LAYOUT_NUMERIC                                                                                                   \
@@ -106,6 +106,6 @@
         LEFT_COLUMN_AUTOMOUSE, LAYOUT_CORE_TRNS, RIGHT_COLUMN_AUTOMOUSE                                                  \
     ),                                                                                                                   \
     KC_TRNS,KC_TRNS,                                            KC_TRNS,KC_TRNS,                                         \
-                    KC_BTN1, KC_BTN2,           TRACKPT, KC_TRNS,                                                        \
+                    MS_BTN1, MS_BTN2,           TRACKPT, KC_TRNS,                                                        \
                     KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS,                                                        \
                     KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS

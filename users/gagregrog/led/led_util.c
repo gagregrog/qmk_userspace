@@ -20,7 +20,7 @@ void debug_rgb_matrix(uint16_t keycode, bool pressed) {
 
   // if we have changed the RGB mode, then rgb_matrix_get_mode() returns the
   // mode that we are switching away from, so add 1 to get the new mode
-  if (keycode == RGB_MOD) {
+  if (keycode == RM_NEXT) {
     normalizedMode += 1;
 
     // if we've reached the last mode, loop back to the beginning
