@@ -444,6 +444,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
         'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
                             '*', '*',  '*', '*',
                             '*', '*',  '*', '*',
+                            '*', '*',  '*', '*',
                             '*', '*',  '*', '*'
     );
 #endif // LAYOUT_split_3x5_3_h || LAYOUT_split_4x6_6

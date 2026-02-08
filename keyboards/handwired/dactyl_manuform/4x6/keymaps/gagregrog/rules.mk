@@ -1,6 +1,3 @@
-# MCU name
-MCU = atmega32u4
-
 TRACKPOINT_ENABLE = yes
 POINTING_DEVICE_INVERT_SCROLL = yes
 
