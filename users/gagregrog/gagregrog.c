@@ -468,3 +468,15 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, u
     // Otherwise defer to the opposite hands rule.
     return get_chordal_hold_default(tap_hold_record, other_record);
 }
+
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    // Disable Flow Tap for shift mod-taps so Shift+key combos (like ?) work during fast typing
+    if (IS_QK_MOD_TAP(keycode) && (QK_MOD_TAP_GET_MODS(keycode) & MOD_LSFT)) {
+        return 0;
+    }
+
+    if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
+        return FLOW_TAP_TERM;
+    }
+    return 0;
+}
