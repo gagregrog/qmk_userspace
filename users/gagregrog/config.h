@@ -74,3 +74,5 @@
 
 #define CHORDAL_HOLD
 #define PERMISSIVE_HOLD
+#define FLOW_TAP_TERM 150
+#define SPECULATIVE_HOLD
