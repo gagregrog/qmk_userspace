@@ -427,13 +427,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 }
 #endif // COMBO_ENABLE
 
-// exempt all thumb keys from chordal hold rules
+// All alpha keys assigned to their hand; thumb keys exempt ('*')
 #if defined(LAYOUT_split_3x5_3_h)
 const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
     LAYOUT_split_3x5_3_h(
-        '*', '*', '*', '*', '*',  '*', '*', '*', '*', '*',
-        'L', 'L', 'L', 'L', '*',  '*', 'R', 'R', 'R', 'R',
-        '*', '*', '*', '*', '*',  '*', '*', '*', '*', '*',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R',
                   '*', '*', '*',  '*', '*', '*'
     );
 #elif defined(LAYOUT_split_4x6_6)
