@@ -72,6 +72,8 @@
 #    define TAPPING_TERM 250
 #endif // TAPPING_TERM
 
+#define TAPPING_TERM_PER_KEY
+#define QUICK_TAP_TERM_PER_KEY
 #define CHORDAL_HOLD
 #define PERMISSIVE_HOLD
 #define FLOW_TAP_TERM 150
