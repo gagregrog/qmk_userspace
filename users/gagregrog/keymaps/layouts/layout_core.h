@@ -31,7 +31,7 @@
 #define _________________NUMERIC_R2________________       PR_RCBR,   KC_4,      KC_5,      KC_6,      KC_SCLN
 #define _________________NUMERIC_R3________________       KC_RBRC,   KC_1,      KC_2,      KC_3,      KC_BSLS
 
-#define _________________UTILITY_L1________________       XXXXXXX,   XXXXXXX,   KC_VOLU,   XXXXXXX,   PR_LPRN
+#define _________________UTILITY_L1________________       KC_TAB,    XXXXXXX,   KC_VOLU,   XXXXXXX,   PR_LPRN
 #define _________________UTILITY_L2________________       XXXXXXX,   KC_MPRV,   KC_VOLD,   KC_MNXT,   PR_LCBR
 #define _________________UTILITY_L3________________       XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC_LBRC
 
