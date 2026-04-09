@@ -469,9 +469,20 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, u
     return get_chordal_hold_default(tap_hold_record, other_record);
 }
 
+static bool is_shift_mod_tap(uint16_t keycode) {
+    return IS_QK_MOD_TAP(keycode) && (QK_MOD_TAP_GET_MODS(keycode) & MOD_LSFT);
+}
+
+static bool is_base_typing_layer(void) {
+    uint8_t layer = get_highest_layer(layer_state);
+    return layer == _LAYER_COLEMAK_DH_HRM || layer == _LAYER_QWERTY_HRM;
+}
+
 uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
-    // Disable Flow Tap for shift mod-taps so Shift+key combos (like ?) work during fast typing
-    if (IS_QK_MOD_TAP(keycode) && (QK_MOD_TAP_GET_MODS(keycode) & MOD_LSFT)) {
+    // Disable Flow Tap for shift mod-taps on base typing layers so Shift+key combos (like ?) work
+    // during fast typing. On other layers (numpad, utility), shift position has non-letter keycodes
+    // and doesn't need this protection.
+    if (is_shift_mod_tap(keycode) && is_base_typing_layer()) {
         return 0;
     }
 
@@ -481,14 +492,10 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
     return 0;
 }
 
-static bool is_shift_mod_tap(uint16_t keycode) {
-    return IS_QK_MOD_TAP(keycode) && (QK_MOD_TAP_GET_MODS(keycode) & MOD_LSFT);
-}
-
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // Shorter tapping term for shift makes rolling Shift+key patterns
     // resolve as holds more reliably (pgetreuer recommends TAPPING_TERM - 45)
-    if (is_shift_mod_tap(keycode)) {
+    if (is_shift_mod_tap(keycode) && is_base_typing_layer()) {
         return TAPPING_TERM - 50;
     }
     return TAPPING_TERM;
@@ -498,7 +505,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     // Disable quick tap for shift to prevent retap-as-repeat.
     // T and N are very common letters, so retapping them within the
     // quick tap window when you actually want shift is frequent.
-    if (is_shift_mod_tap(keycode)) {
+    if (is_shift_mod_tap(keycode) && is_base_typing_layer()) {
         return 0;
     }
     return QUICK_TAP_TERM;
