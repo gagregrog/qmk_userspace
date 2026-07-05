@@ -51,7 +51,7 @@ void tap_dance_begin_gagregrog(
   if (action.key > 0) {
     switch (action.key) {
       #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
-        case KC_SECRET_1 ... KC_SECRET_5:
+        case KC_SECRET_RANGE_START ... KC_SECRET_RANGE_END:
           send_secret(action.key);
           break;
       #endif
@@ -102,7 +102,7 @@ void tap_dance_end_gagregrog(
   if (action.key > 0) {
     switch (action.key) {
       #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
-        case KC_SECRET_1 ... KC_SECRET_5: break;
+        case KC_SECRET_RANGE_START ... KC_SECRET_RANGE_END: break;
       #endif
       default: {
         if (td_data->pressed) {

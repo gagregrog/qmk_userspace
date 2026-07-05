@@ -5,6 +5,11 @@
 #    include "unicode.h"
 #endif
 
+#if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
+    #define MAX_SECRETS 10
+    #define KC_SECRET_NUM(n) (KC_SECRET_RANGE_START + (n) - 1)
+#endif
+
 enum gagregrog_keycodes {
 #if defined(DILEMMA_SAFE_RANGE)
     BASE_TOGGLE = DILEMMA_SAFE_RANGE,
@@ -23,11 +28,8 @@ enum gagregrog_keycodes {
     MOUSE_TOGGLE,
 #endif // TRACKPOINT_ENABLE
 #if defined(INCLUDE_SECRETS) && !defined(NO_SECRETS)
-    KC_SECRET_1,
-    KC_SECRET_2,
-    KC_SECRET_3,
-    KC_SECRET_4,
-    KC_SECRET_5,
+    KC_SECRET_RANGE_START,
+    KC_SECRET_RANGE_END = KC_SECRET_RANGE_START + MAX_SECRETS - 1,
 #endif // INCLUDE_SECRETS && !defined(NO_SECRETS)
 #if defined(POINTING_DEVICE_ENABLE)
     AM_TOGGLE,

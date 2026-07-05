@@ -33,12 +33,12 @@ static const char * const secrets[] = {
 void send_secret(uint16_t keycode) {
   clear_mods();
   clear_oneshot_mods();
-  send_string_with_delay(secrets[keycode - KC_SECRET_1], MACRO_TIMER);
+  send_string_with_delay(secrets[keycode - KC_SECRET_RANGE_START], MACRO_TIMER);
 };
 
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case KC_SECRET_1 ... KC_SECRET_5: // Secrets!  Externally defined strings, not stored in repo
+    case KC_SECRET_RANGE_START ... KC_SECRET_RANGE_START + ARRAY_SIZE(secrets) - 1:
       if (record->event.pressed) {
         send_secret(keycode);
       }
